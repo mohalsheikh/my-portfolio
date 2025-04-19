@@ -21,22 +21,13 @@ module.exports = {
         brand: '#6366F1',
         accent: '#EC4899',
       },
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-      },
-      backdropBlur: {
-        xs: '2px',
-      },
-      transitionProperty: {
-        shadow: 'box-shadow',
-      },
-      scale: {
-        102: '1.02',
-      },
-      opacity: {
-        15: '0.15',
-        85: '0.85',
-      },
+      fontFamily: { sans: ['Inter', 'sans-serif'] },
+      backdropBlur: { xs: '2px' },
+      transitionProperty: { shadow: 'box-shadow' },
+      scale: { 102: '1.02' },
+      opacity: { 15: '0.15', 85: '0.85' },
+
+      /* ─── Animations ─────────────────────────────────── */
       animation: {
         float: 'float 6s ease-in-out infinite',
         'float-delayed': 'float 6s ease-in-out -2s infinite',
@@ -46,14 +37,22 @@ module.exports = {
         'grid-pan': 'grid-pan 20s linear infinite',
         marquee: 'marquee 25s linear infinite',
         marquee2: 'marquee2 25s linear infinite',
+        'animate-float': 'float 8s ease-in-out infinite',
+        'animate-float-delayed': 'float 10s ease-in-out 2s infinite',
+
+        /* ✅ new */
+        'slideDown': 'slideDown 0.3s ease-out',
+        'slideUp': 'slideUp 0.3s ease-in',
       },
+
+      /* ─── Keyframes ──────────────────────────────────── */
       keyframes: {
         float: {
-          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
-          '50%': { transform: 'translateY(-20px) rotate(4deg)' },
+          '0%,100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-20px) rotate(5deg)' },
         },
         'gradient-text': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '0%,100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
         },
         shimmer: {
@@ -66,8 +65,8 @@ module.exports = {
           '100%': { backgroundPosition: '0% 50%' },
         },
         'grid-pan': {
-          '0%': { transform: 'translate(0, 0)' },
-          '100%': { transform: 'translate(-40px, 40px)' },
+          '0%': { transform: 'translate(0,0)' },
+          '100%': { transform: 'translate(-40px,40px)' },
         },
         marquee: {
           '0%': { transform: 'translateX(0%)' },
@@ -77,12 +76,26 @@ module.exports = {
           '0%': { transform: 'translateX(100%)' },
           '100%': { transform: 'translateX(0%)' },
         },
+
+        /* ✅ new */
+        slideDown: {
+          '0%': { transform: 'translateY(-10px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(0)',    opacity: '1' },
+          '100%': { transform: 'translateY(-10px)', opacity: '0' },
+        },
       },
+
       backgroundImage: {
-        'grid-gray-400/20': 'linear-gradient(to right, rgba(156, 163, 175, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(156, 163, 175, 0.1) 1px, transparent 1px)',
-        'grid-gray-700/20': 'linear-gradient(to right, rgba(55, 65, 81, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(55, 65, 81, 0.1) 1px, transparent 1px)',
-        shimmer: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
-        'radial-gradient': 'radial-gradient(circle, var(--tw-gradient-stops))',
+        'grid-gray-400/20':
+          'linear-gradient(to right, rgba(156,163,175,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(156,163,175,0.1) 1px, transparent 1px)',
+        'grid-gray-700/20':
+          'linear-gradient(to right, rgba(55,65,81,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(55,65,81,0.1) 1px, transparent 1px)',
+        shimmer:
+          'linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent)',
+        'radial-gradient': 'radial-gradient(circle,var(--tw-gradient-stops))',
       },
       backgroundSize: {
         'grid-sm': '40px 40px',
@@ -90,13 +103,13 @@ module.exports = {
         'grid-lg': '80px 80px',
       },
       boxShadow: {
-        glow: '0 0 20px rgba(99, 102, 241, 0.2)',
-        'glow-accent': '0 0 20px rgba(236, 72, 153, 0.2)',
+        glow: '0 0 20px rgba(99,102,241,0.2)',
+        'glow-accent': '0 0 20px rgba(236,72,153,0.2)',
       },
       dropShadow: {
         glow: [
-          '0 0 8px rgba(99, 102, 241, 0.5)',
-          '0 0 4px rgba(236, 72, 153, 0.25)',
+          '0 0 8px rgba(99,102,241,0.5)',
+          '0 0 4px rgba(236,72,153,0.25)',
         ],
       },
     },

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, RocketLaunch, SoccerBall } from 'phosphor-react';
-import { Globe } from 'phosphor-react';
+import { Globe, Code, RocketLaunch, SoccerBall } from 'phosphor-react';
 
 const AboutMe = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
