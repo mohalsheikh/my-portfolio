@@ -21,41 +21,46 @@ const projects: Project[] = [
   {
     slug: "halllink",
     title: "HallLink – Student‑Housing Super‑App",
-    description: "Won $7,500 in a university competition. Connects residents with RAs, events, safety resources, and an AI chatbot.",
-    stack: ["React Native", "Firebase", "TypeScript", "GPT‑4o"],
-    image: "https://source.unsplash.com/featured/800x600?dorm",
+    description:
+      "Mobile app designed to streamline campus housing by connecting students with RAs, events, maps, safety tools, and an AI chatbot. Presented at CBU’s Innovation Challenge, where it received strong interest from university leadership.",
+    stack: ["Swift", "Firebase", "Python", "JavaScript"],
+    image: "https://source.unsplash.com/featured/800x600?dormitory",
     live: "#",
-    source: "https://github.com/example/halllink",
+    source: "https://github.com/mohalsheikh/lancer-Arms-app", // Replace with actual repo if public
     featured: true,
+  },    
+  {
+    slug: "soundtrack",
+    title: "Soundtrack – Social Music Sharing",
+    description:
+      "A BeReal-style app built for a client where users post one song per day, powered by Spotify. Built with Flutter and Firebase for a smooth cross-platform experience.",
+    stack: ["Flutter", "Firebase", "Spotify API"],
+    image: "https://source.unsplash.com/featured/800x600?music",
+    live: "#",
+    source: "https://github.com/example/soundtrack", // Replace with real repo if public
   },
   {
     slug: "portfolio",
-    title: "Modern Portfolio",
-    description: "My own blazing‑fast, animated dev portfolio built with React, Vite, TailwindCSS, and Framer Motion.",
+    title: "My Developer Portfolio",
+    description:
+      "Fast, animated portfolio site showcasing my work, built using modern tools and motion UI. Designed to reflect my style and skills as a fullstack developer.",
     stack: ["React", "Vite", "Tailwind", "Framer Motion"],
     image: "https://source.unsplash.com/featured/800x600?code",
-    live: "#",
-    source: "https://github.com/example/portfolio",
+    live: "https://moalsheikh.com", // Replace with actual domain
+    source: "https://github.com/mohalsheikh/portfolio", // Replace with real repo
   },
   {
-    slug: "astroblog",
-    title: "Headless Blog with Astro + MDX",
-    description: "A content‑driven blog that hits perfect Lighthouse scores and costs $0 to host.",
-    stack: ["Astro", "MDX", "Tailwind", "Netlify"],
-    image: "https://source.unsplash.com/featured/800x600?blog",
-    live: "#",
-    source: "https://github.com/example/astroblog",
-  },
-  {
-    slug: "room‑finder",
-    title: "CBU Empty‑Room Finder",
-    description: "Flutter app that crowdsources real‑time study‑room availability on campus.",
+    slug: "room-finder",
+    title: "CBU Empty Room Finder",
+    description:
+      "Flutter app that helps CBU students find available study rooms in real-time, powered by crowdsourced data and Firebase backend.",
     stack: ["Flutter", "Firebase", "Cloud Functions"],
-    image: "https://source.unsplash.com/featured/800x600?library",
+    image: "https://source.unsplash.com/featured/800x600?study",
     live: "#",
-    source: "https://github.com/example/room‑finder",
+    source: "https://github.com/example/room-finder", // Replace with real repo if public
   },
 ];
+
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -71,7 +76,7 @@ const cardVariants: Variants = {
 };
 
 export default function Projects() {
-  const featured = projects.find((p) => p.featured);
+  const featured = projects.find((p: Project) => p.featured);
   const rest = projects.filter((p) => !p.featured);
 
   return (
@@ -257,6 +262,30 @@ export default function Projects() {
           ))}
         </motion.div>
       </div>
+            {/* Floating call to action */}
+            <motion.div 
+        className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 pb-16 md:pb-24"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+      >
+        <div className="bg-gradient-to-r from-brand/10 to-accent/10 dark:from-brand/20 dark:to-accent/20 backdrop-blur-xl rounded-2xl p-8 border border-white/30 dark:border-gray-700 text-center">
+          <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Have a project in mind?</h3>
+          <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+            I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+          </p>
+          <Link 
+            to="/contact" 
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand to-accent text-white rounded-lg transition-all shadow-lg hover:shadow-brand/30 hover:from-brand/90 hover:to-accent/90"
+          >
+            <span>Get in Touch</span>
+            <FiChevronRight className="transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
+      </motion.div>
     </section>
+    
   );
 }
+
+

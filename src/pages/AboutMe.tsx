@@ -11,15 +11,48 @@ const AboutMe = () => {
   };
 
   const techStack = [
+    // Programming Languages
+    { name: 'JavaScript', icon: '🟨' },
+    { name: 'TypeScript', icon: '📘' },
+    { name: 'Python', icon: '🐍' },
+    { name: 'Dart', icon: '🎯' },
+    { name: 'C++', icon: '💻' },
+    { name: 'Swift', icon: '🧡' }, // ✅ added Swift
+  
+    // Frontend Frameworks
     { name: 'React', icon: '⚛️' },
     { name: 'Next.js', icon: '🚀' },
-    { name: 'TypeScript', icon: '📘' },
-    { name: 'Node.js', icon: '🟢' },
-    { name: 'Firebase', icon: '🔥' },
-    { name: 'Tailwind', icon: '🎨' },
     { name: 'Flutter', icon: '📱' },
+    { name: 'Tailwind CSS', icon: '🎨' },
+  
+    // Backend & Databases
+    { name: 'Node.js', icon: '🟢' },
+    { name: 'Express.js', icon: '🚂' },
+    { name: 'Firebase', icon: '🔥' },
+    { name: 'MongoDB', icon: '🍃' },
+    { name: 'SQL', icon: '🗃️' },
+  
+    // DevOps & Tools
+    { name: 'Git & GitHub', icon: '🐙' },
     { name: 'AWS', icon: '☁️' },
+    { name: 'Linux & CLI', icon: '💻' },
+    // { name: 'Framer Motion', icon: '🎞️' },
+  
+    // Core Engineering Skills
+    { name: 'Data Structures', icon: '🧱' },
+    { name: 'Algorithms', icon: '🧠' },
+    { name: 'System Design', icon: '🗂️' },
+    { name: 'Object-Oriented Programming', icon: '🏗️' },
+  
+    // Professional Skills
+    { name: 'Debugging', icon: '🐞' },
+    { name: 'Unit Testing', icon: '🧪' },
+    { name: 'REST APIs', icon: '🔌' },
+    { name: 'Agile & Scrum', icon: '📆' },
+    { name: 'Problem Solving', icon: '🧩' },
+    { name: 'Collaboration', icon: '🤝' },
   ];
+  
 
   const coreValues = [
     { title: 'Creativity', icon: <RocketLaunch size={24} />, color: 'purple' },
@@ -29,9 +62,9 @@ const AboutMe = () => {
   ];
 
   const culturalJourney = [
-    { year: '2002', event: 'Born in Munich, Germany', flag: '🇩🇪' },
-    { year: '2008', event: 'Moved to Amman, Jordan', flag: '🇯🇴' },
-    { year: '2022', event: 'Relocated to California, USA', flag: '🇺🇸' },
+    { year: '2004', event: 'Born in Tuebingen, Germany', flag: '🇩🇪' },
+    { year: '2009', event: 'Moved to Amman, Jordan', flag: '🇯🇴' },
+    { year: '2022', event: 'California, USA', flag: '🇺🇸' },
   ];
 
   return (
@@ -102,7 +135,7 @@ const AboutMe = () => {
         <section className="mb-28">
           <h2 className="text-3xl font-bold text-center mb-16 text-slate-800 dark:text-white">
             <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Technical Arsenal
+             Technical Skills
             </span>
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -125,40 +158,47 @@ const AboutMe = () => {
           </div>
         </section>
 
-        {/* Achievement Spotlight */}
-        <motion.div
-          whileInView={{ scale: 1 }}
-          initial={{ scale: 0.95 }}
-          className="mb-28 relative group"
-        >
-          <div className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition-all" />
-          <div className="relative bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg rounded-2xl p-8 shadow-2xl">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="w-full md:w-1/3">
-                <div className="bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl p-6 text-center">
-                  <span className="text-5xl">🏆</span>
-                  <h3 className="text-2xl font-bold text-white mt-4">HallLink</h3>
-                  <p className="text-purple-200">1st Place Winner</p>
-                </div>
-              </div>
-              <div className="w-full md:w-2/3">
-                <p className="text-lg text-slate-600 dark:text-slate-300 mb-4">
-                  Led development of a campus housing platform that revolutionized student accommodations,
-                  winning CBU's Innovation Challenge with $7,500 in funding. Architected a cross-platform
-                  solution serving 2,000+ students with features like:
-                </p>
-                <ul className="grid grid-cols-2 gap-4">
-                  {['AI Roommate Matching', '3D Virtual Tours', 'Lease Automation', 'Community Building'].map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                      <span className="text-purple-600">▹</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+{/* Achievement Spotlight */}
+<motion.div
+  whileInView={{ scale: 1 }}
+  initial={{ scale: 0.95 }}
+  className="mb-28 relative group"
+>
+  <div className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition-all" />
+  <div className="relative bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg rounded-2xl p-8 shadow-2xl">
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      <div className="w-full md:w-1/3">
+        <div className="bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl p-6 text-center">
+          <span className="text-5xl">🏆</span>
+          <h3 className="text-2xl font-bold text-white mt-4">HallLink</h3>
+          <p className="text-purple-200">Finalist & Recognized Project</p>
+        </div>
+      </div>
+      <div className="w-full md:w-2/3">
+        <p className="text-lg text-slate-600 dark:text-slate-300 mb-4">
+          Designed and led development of HallLink, a campus housing platform that gained recognition at CBU's Innovation Challenge and earned rewards for its innovation and impact. The project drew interest from multiple universities for its potential to enhance student life through:
+        </p>
+        <ul className="grid grid-cols-2 gap-4 mb-4">
+          {[
+            'RA Info & Duty Nights',
+            'AI Chatbot Support',
+            'Interactive Housing Map',
+            'Event Listings & Community Activities',
+            'Campus Safety Toolkit',
+          ].map((feature) => (
+            <li key={feature} className="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+              <span className="text-purple-600">▹</span>
+              {feature}
+            </li>
+          ))}
+        </ul>
+        <p className="text-sm text-slate-500 dark:text-slate-400 italic">
+          Planned expansions include multi-area support, resident account creation, admin dashboards, and in-app maintenance requests.
+        </p>
+      </div>
+    </div>
+  </div>
+</motion.div>
 
         {/* Athletic Background */}
         <section className="mb-28 bg-gradient-to-br from-slate-900 to-blue-900 rounded-3xl p-8 text-white relative overflow-hidden">
@@ -175,10 +215,9 @@ const AboutMe = () => {
             <div className="w-full md:w-2/3">
               <h3 className="text-3xl font-bold mb-6">From Pitch to Code</h3>
               <p className="text-lg mb-6 opacity-90 leading-relaxed">
-                As a former professional soccer player for Al-Wehdat SC (Jordan Premier League),
-                I bring the same discipline and teamwork to development that I cultivated on the field.
-                Key transferable skills:
-              </p>
+  During high school, I had the opportunity to play professional soccer with Al-Wehdat SC in the Jordan Premier League. The experience sharpened my discipline, resilience, and ability to work under pressure — qualities I now bring into my work as a developer.
+  Key transferable skills:
+</p>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { skill: 'Leadership', emoji: '👨✈️' },

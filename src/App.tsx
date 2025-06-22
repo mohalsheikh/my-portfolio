@@ -8,6 +8,11 @@ import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { useEffect, useState } from 'react';
+import HallLink from './pages/projects/HallLink';
+import Soundtrack from './pages/projects/Soundtrack';
+import RoomFinder from './pages/projects/RoomFinder';
+
+
 
 function App() {
   const [mounted, setMounted] = useState(false);
@@ -29,6 +34,9 @@ function App() {
               <Route path="/projects" element={<Projects />} />
               <Route path="/projects/:slug" element={<ProjectDetail />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/projects/halllink" element={<HallLink />} />
+              <Route path="/projects/soundtrack" element={<Soundtrack />} />
+              <Route path="/projects/room-finder" element={<RoomFinder />} />
               <Route path="*" element={<div>404 - Page not found</div>} />
             </Routes>
           </main>
