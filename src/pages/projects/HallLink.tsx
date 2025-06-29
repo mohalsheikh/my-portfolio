@@ -2,6 +2,69 @@ import { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FiGithub, FiChevronLeft, FiExternalLink, FiMoon, FiSun } from "react-icons/fi";
+import hallinkscreenshot from '../../assets/hallinkscreenshot.png';
+import hallinkScreenshot1 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 02.36.00.png';
+import hallinkScreenshot2 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 02.36.03.png';
+import hallinkScreenshot3 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 02.36.15.png';
+import hallinkScreenshot4 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 02.37.10.png';
+import hallinkScreenshot5 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 02.37.17.png';
+import hallinkScreenshot6 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 02.37.23.png';
+import hallinkScreenshot7 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 02.41.45.png';
+import hallinkScreenshot8 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 02.43.47.png';
+import hallinkScreenshot9 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 02.44.18.png';
+import hallinkScreenshot10 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 03.01.11.png';
+import hallinkScreenshot11 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 03.01.50.png';
+import hallinkScreenshot12 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-02-25 at 03.02.46.png';
+import hallinkScreenshot14 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-09 at 00.13.05.png';
+import hallinkScreenshot15 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-09 at 00.14.11.png';
+import hallinkScreenshot16 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-09 at 00.14.15.png';
+import hallinkScreenshot17 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-09 at 00.24.20.png';
+import hallinkScreenshot18 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-09 at 00.43.54.png';
+import hallinkScreenshot19 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-09 at 00.43.58.png';
+import hallinkScreenshot20 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-09 at 00.51.44.png';
+import hallinkScreenshot21 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-09 at 00.55.27.png';
+import hallinkScreenshot22 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-14 at 01.51.37.png';
+import hallinkScreenshot23 from '../../assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-14 at 01.51.50.png';
+import hallinkScreenshot24 from '../../assets/Simulator Screenshot - iPhone 16 Pro Max - 2025-01-31 at 23.18.42.png';
+import hallinkScreenshot25 from '../../assets/Simulator Screenshot - iPhone 16 Pro Max - 2025-01-31 at 23.18.59.png';
+import hallinkScreenshot26 from '../../assets/Simulator Screenshot - iPhone 16 Pro Max - 2025-01-31 at 23.19.09.png';
+import hallinkScreenshot27 from '../../assets/Simulator Screenshot - iPhone 16 Pro Max - 2025-01-31 at 23.19.45.png';
+import hallinkScreenshot28 from '../../assets/Simulator Screenshot - iPhone 16 Pro Max - 2025-01-31 at 23.24.38.png';
+import hallinkScreenshot29 from '../../assets/Simulator Screenshot - iPhone 16 Pro Max - 2025-01-31 at 23.27.04.png';
+import hallinkScreenshot30 from '../../assets/Simulator Screenshot - iPhone 16 Pro Max - 2025-01-31 at 23.28.12.png';
+
+const screenshots = [
+  hallinkScreenshot1,
+  hallinkScreenshot2,
+  hallinkScreenshot3,
+  hallinkScreenshot4,
+  hallinkScreenshot5,
+  hallinkScreenshot6,
+  hallinkScreenshot7,
+  hallinkScreenshot8,
+  hallinkScreenshot9,
+  hallinkScreenshot10,
+  hallinkScreenshot11,
+  hallinkScreenshot12,
+  hallinkScreenshot14,
+  hallinkScreenshot15,
+  hallinkScreenshot16,
+  hallinkScreenshot17,
+  hallinkScreenshot18,
+  hallinkScreenshot19,
+  hallinkScreenshot20,
+  hallinkScreenshot21,
+  hallinkScreenshot22,
+  hallinkScreenshot23,
+  hallinkScreenshot24,
+  hallinkScreenshot25,
+  hallinkScreenshot26,
+  hallinkScreenshot27,
+  hallinkScreenshot28,
+  hallinkScreenshot29,
+  hallinkScreenshot30,
+];
+
 
 const features = [
   {
@@ -37,13 +100,20 @@ const features = [
 ];
 
 const techStack = [
-  { name: "Swift", color: "from-orange-500 to-orange-300" },
-  { name: "Firebase", color: "from-yellow-500 to-yellow-300" },
-  { name: "TypeScript", color: "from-blue-500 to-blue-300" },
-  { name: "GPT-4o", color: "from-purple-500 to-purple-300" },
-  { name: "MapKit", color: "from-red-500 to-red-300" },
-  { name: "Node.js", color: "from-green-500 to-green-300" }
+  { name: "Swift", bg: "bg-orange-500" },
+  { name: "Firebase", bg: "bg-yellow-500" },
+  { name: "TypeScript", bg: "bg-blue-600" },
+  { name: "GPT-4o", bg: "bg-purple-600" },
+  { name: "MapKit", bg: "bg-red-500" },
+  { name: "Node.js", bg: "bg-green-600" },
+  { name: "Firebase Auth", bg: "bg-yellow-600" },
+  { name: "Firestore", bg: "bg-amber-500" },
+  { name: "Firebase Storage", bg: "bg-orange-600" },
+  { name: "Firebase Functions", bg: "bg-lime-600" },
+  { name: "ChatGPT API", bg: "bg-indigo-500" },
 ];
+
+
 
 export default function HallLinkProject() {
   const [darkMode, setDarkMode] = useState(false);
@@ -55,6 +125,10 @@ export default function HallLinkProject() {
       document.documentElement.classList.remove('dark');
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={`min-h-screen transition-colors duration-500 ${darkMode ? 'bg-gradient-to-br from-gray-900 to-gray-800' : 'bg-gradient-to-br from-blue-50 to-indigo-50'}`}>
@@ -126,7 +200,7 @@ export default function HallLinkProject() {
                 transition={{ delay: 0.6 }}
               >
                 <a
-                  href="https://github.com/mohalsheikh/lancer-Arms-app"
+                  href="https://github.com/mohalsheikh/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-5 py-3 rounded-lg bg-gray-800 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
@@ -135,13 +209,13 @@ export default function HallLinkProject() {
                   Source Code
                 </a>
                 
-                <a
+                {/* <a
                   href="#"
                   className="flex items-center gap-2 px-5 py-3 rounded-lg bg-brand text-white hover:bg-indigo-500 transition-colors"
                 >
                   <FiExternalLink />
                   Live Demo
-                </a>
+                </a> */}
               </motion.div>
             </div>
             
@@ -153,12 +227,12 @@ export default function HallLinkProject() {
             >
               <div className="absolute -inset-8 bg-gradient-to-r from-brand/10 to-accent/10 rounded-3xl rotate-3"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1470&auto=format&fit=crop"
-                  alt="HallLink app mockup"
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-                />
+<img
+  src={hallinkscreenshot}
+  alt="HallLink app screenshot"
+  className="w-full h-auto object-cover"
+  loading="lazy"
+/>
               </div>
             </motion.div>
           </div>
@@ -186,7 +260,7 @@ export default function HallLinkProject() {
                 <div className="p-6 rounded-xl bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 border border-indigo-100 dark:border-gray-700">
                   <h3 className="font-bold text-lg mb-2 text-indigo-700 dark:text-indigo-400">Recognition</h3>
                   <p>
-                    Presented at CBU's Innovation Challenge, where it received strong interest from university leadership and positive feedback from students and RAs.
+                    Presented at CBU's Business Plan Competition, where it received strong interest from university leadership and positive feedback from students and RAs.
                   </p>
                 </div>
               </div>
@@ -312,14 +386,13 @@ export default function HallLinkProject() {
           <div className="flex flex-wrap justify-center gap-4">
             {techStack.map((tech, index) => (
               <motion.div
-                key={index}
-                className="px-5 py-3 rounded-full bg-gradient-to-r text-white font-medium"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              key={index}
+              className={`px-5 py-3 rounded-full ${tech.bg} text-white font-medium shadow-md`}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}          
               >
                 {tech.name}
               </motion.div>
@@ -396,31 +469,31 @@ export default function HallLinkProject() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <motion.div 
-                key={item}
-                className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: item * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-              >
-                <div className="p-4 bg-gray-100 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                  </div>
-                </div>
-                <img 
-                  src={`https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1074&q=80`} 
-                  alt={`HallLink screen ${item}`}
-                  className="w-full h-auto"
-                />
-              </motion.div>
-            ))}
-          </div>
+  {screenshots.map((src, index) => (
+    <motion.div 
+      key={index}
+      className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.03 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -10 }}
+    >
+      <div className="p-4 bg-gray-100 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex gap-1.5">
+          <div className="w-3 h-3 rounded-full bg-red-400"></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+          <div className="w-3 h-3 rounded-full bg-green-400"></div>
+        </div>
+      </div>
+      <img 
+        src={src} 
+        alt={`HallLink screen ${index + 1}`}
+        className="w-full h-auto"
+      />
+    </motion.div>
+  ))}
+</div>
         </section>
 
         {/* Call to Action */}
@@ -435,7 +508,7 @@ export default function HallLinkProject() {
             Explore the full implementation on GitHub and see how HallLink was built from the ground up.
           </p>
           <a
-            href="https://github.com/mohalsheikh/lancer-Arms-app"
+            href="https://github.com/mohalsheikh/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-800 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors text-lg font-medium"

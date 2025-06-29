@@ -2,9 +2,17 @@ import { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FiGithub, FiChevronLeft, FiExternalLink, FiMoon, FiSun, FiMap, FiUsers, FiClock, FiCalendar, FiThumbsUp, FiAward } from "react-icons/fi";
+import emptyroomrnginerring from '../../assets/emptyroomrnginerring.jpg';
+import emptyroom1 from '../../assets/emptyroom1.png';
+import emptyroom2 from '../../assets/emptyroom2.png';
+import emptyroom3 from '../../assets/emptyroom3.png';
 
+const screenshots = [
+  emptyroom1, emptyroom2, emptyroom3
+]
 export default function RoomFinder() {
   const [darkMode, setDarkMode] = useState(false);
+
   
   useEffect(() => {
     if (darkMode) {
@@ -13,6 +21,10 @@ export default function RoomFinder() {
       document.documentElement.classList.remove('dark');
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const features = [
     {
@@ -48,10 +60,11 @@ export default function RoomFinder() {
 
   const impactStats = [
     { value: "78%", label: "Reduction in search time" },
-    { value: "1,200+", label: "Active users" },
+    { value: "4.8/5", label: "Prototype demo feedback" },
     { value: "94%", label: "User satisfaction" },
-    { value: "42", label: "Buildings mapped" }
+    { value: "100%", label: "Campus buildings covered" }
   ];
+  ;
 
   const futureIdeas = [
     "Admin moderation tools",
@@ -134,7 +147,7 @@ export default function RoomFinder() {
                 transition={{ delay: 0.6 }}
               >
                 <a
-                  href="https://github.com/example/room-finder"
+                  href="https://github.com/NoahTheLee/EGR302_Empty_Room"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-5 py-3 rounded-lg bg-gray-800 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
@@ -143,13 +156,13 @@ export default function RoomFinder() {
                   Source Code
                 </a>
                 
-                <a
+                {/* <a
                   href="#"
                   className="flex items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-green-500 text-white hover:opacity-90 transition-opacity"
                 >
                   <FiExternalLink />
                   View Demo
-                </a>
+                </a> */}
               </motion.div>
             </div>
             
@@ -161,132 +174,132 @@ export default function RoomFinder() {
             >
               <div className="absolute -inset-8 bg-gradient-to-r from-blue-400/10 to-green-400/10 rounded-3xl rotate-3"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
-                <img
-                  src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1470&auto=format&fit=crop"
-                  alt="CBU Room Finder app mockup"
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-                />
+              <img
+  src={emptyroomrnginerring}
+  alt="HallLink app screenshot"
+  className="w-full h-auto object-cover"
+  loading="lazy"
+/>
               </div>
             </motion.div>
           </div>
         </motion.div>
 
-        {/* Team Collaboration */}
-        <section className="mb-24">
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">My Role on the Team</h2>
-              <div className="space-y-6 text-gray-700 dark:text-gray-300">
-                <p>
-                  As a developer on this project, I collaborated with fellow CBU students to create a solution to a common campus challenge. My contributions included:
-                </p>
-                
-                <ul className="list-disc list-inside space-y-2 mt-4">
-                  <li>Implementing the real-time room availability feature using Firebase</li>
-                  <li>Developing the voting system interface and backend logic</li>
-                  <li>Contributing to the building directory with user-tagged rooms</li>
-                  <li>Assisting with UI design for optimal campus navigation</li>
-                </ul>
-                
-                <div className="mt-8">
-                  <h3 className="font-bold text-lg mb-4 text-gray-800 dark:text-white">Development Team</h3>
-                  <div className="flex items-center gap-4">
-                    <div className="flex -space-x-3">
-                      <div className="w-12 h-12 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center text-white font-bold">Y</div>
-                      <div className="w-12 h-12 rounded-full bg-green-500 border-2 border-white flex items-center justify-center text-white font-bold">M</div>
-                      <div className="w-12 h-12 rounded-full bg-brand border-2 border-white flex items-center justify-center text-white font-bold">J</div>
-                      <div className="w-12 h-12 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-gray-700 font-bold">+2</div>
-                    </div>
-                    <span className="font-medium text-gray-800 dark:text-gray-200">Team Members</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              className="bg-gradient-to-br from-white/80 to-blue-50/80 dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-lg"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Solving Campus Challenges</h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6">
-                Our team identified these common problems faced by CBU students:
-              </p>
-              <ul className="space-y-4 text-gray-700 dark:text-gray-300">
-                <li className="flex items-start gap-3">
-                  <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-full text-red-500 dark:text-red-400 mt-1">⚠️</div>
-                  <div>Wasted time searching for available spaces between classes</div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-full text-red-500 dark:text-red-400 mt-1">⚠️</div>
-                  <div>Frustration during exam seasons with overcrowded study areas</div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-full text-red-500 dark:text-red-400 mt-1">⚠️</div>
-                  <div>Difficulty finding appropriate spaces for group projects</div>
-                </li>
-              </ul>
-              
-              <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Our Team's Solution</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Together, we created CBU Room Finder to offer real-time room availability based on crowdsourced data — helping students save time, reduce frustration, and study more efficiently.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+      {/* Team Collaboration */}
+<section className="mb-24">
+  <div className="grid md:grid-cols-2 gap-12">
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Team Collaboration</h2>
+      <div className="space-y-6 text-gray-700 dark:text-gray-300">
+        <p>
+          This project was developed by a team of student developers from CBU, including myself, working together to tackle a common campus challenge. The team shared responsibilities across development, design, and testing to build an impactful solution.
+        </p>
 
-        {/* Key Features */}
-        <section className="mb-24">
-          <div className="text-center mb-16">
-            <motion.h2 
-              className="text-3xl font-bold mb-4 text-gray-800 dark:text-white"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              Features I Helped Implement
-            </motion.h2>
-            <motion.p 
-              className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              Core functionality I contributed to as part of the development team
-            </motion.p>
+        <ul className="list-disc list-inside space-y-2 mt-4">
+          <li>Built the real-time room availability feature using Firebase</li>
+          <li>Developed a voting system for crowd-based room status updates</li>
+          <li>Contributed to the searchable building directory and tag system</li>
+          <li>Collaborated on UI/UX design to ensure clarity and ease of use</li>
+        </ul>
+
+        {/* <div className="mt-8">
+          <h3 className="font-bold text-lg mb-4 text-gray-800 dark:text-white">Development Team</h3>
+          <div className="flex items-center gap-4">
+            <div className="flex -space-x-3">
+              <div className="w-12 h-12 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center text-white font-bold">Y</div>
+              <div className="w-12 h-12 rounded-full bg-green-500 border-2 border-white flex items-center justify-center text-white font-bold">M</div>
+              <div className="w-12 h-12 rounded-full bg-brand border-2 border-white flex items-center justify-center text-white font-bold">J</div>
+              <div className="w-12 h-12 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-gray-700 font-bold">+2</div>
+            </div>
+            <span className="font-medium text-gray-800 dark:text-gray-200">Collaborative Student Team</span>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm hover:shadow-md transition-all group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-              >
-                <div className="text-blue-600 dark:text-blue-400 mb-4 transition-transform group-hover:scale-110">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">{feature.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+        </div> */}
+      </div>
+    </motion.div>
+
+    <motion.div
+      className="bg-gradient-to-br from-white/80 to-blue-50/80 dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-lg"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      viewport={{ once: true }}
+    >
+      <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Solving Campus Challenges</h3>
+      <p className="text-gray-700 dark:text-gray-300 mb-6">
+        The team identified several common pain points experienced by students at CBU:
+      </p>
+      <ul className="space-y-4 text-gray-700 dark:text-gray-300">
+        <li className="flex items-start gap-3">
+          <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-full text-red-500 dark:text-red-400 mt-1">⚠️</div>
+          <div>Wasted time searching for available spaces between classes</div>
+        </li>
+        <li className="flex items-start gap-3">
+          <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-full text-red-500 dark:text-red-400 mt-1">⚠️</div>
+          <div>Overcrowded study areas during busy seasons</div>
+        </li>
+        <li className="flex items-start gap-3">
+          <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-full text-red-500 dark:text-red-400 mt-1">⚠️</div>
+          <div>Difficulty finding appropriate rooms for group projects or quiet studying</div>
+        </li>
+      </ul>
+
+      <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">The Result</h3>
+        <p className="text-gray-700 dark:text-gray-300">
+          Together, we built CBU Room Finder — a mobile app that displays real-time room availability based on community input. The app empowers students to find open spaces quickly, avoid frustration, and stay productive throughout the day.
+        </p>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
+{/* Key Features */}
+<section className="mb-24">
+  <div className="text-center mb-16">
+    <motion.h2 
+      className="text-3xl font-bold mb-4 text-gray-800 dark:text-white"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      Core Features Built by the Team
+    </motion.h2>
+    <motion.p 
+      className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.1 }}
+      viewport={{ once: true }}
+    >
+      Developed through close collaboration among student developers — including my contributions to several key features below.
+    </motion.p>
+  </div>
+  
+  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {features.map((feature, index) => (
+      <motion.div
+        key={index}
+        className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm hover:shadow-md transition-all group"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        whileHover={{ y: -10 }}
+      >
+        <div className="text-blue-600 dark:text-blue-400 mb-4 transition-transform group-hover:scale-110">
+          {feature.icon}
+        </div>
+        <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">{feature.title}</h3>
+        <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
+      </motion.div>
+    ))}
+  </div>
+</section>
 
         {/* Impact & Value */}
         <section className="mb-24">
@@ -433,53 +446,54 @@ export default function RoomFinder() {
 
         {/* App Interface Showcase */}
         <section className="mb-24">
-          <div className="text-center mb-16">
-            <motion.h2 
-              className="text-3xl font-bold mb-4 text-gray-800 dark:text-white"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              App Interface
-            </motion.h2>
-            <motion.p 
-              className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              Screens from the app I helped develop
-            </motion.p>
+  <div className="text-center mb-16">
+    <motion.h2 
+      className="text-3xl font-bold mb-4 text-gray-800 dark:text-white"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      App Interface
+    </motion.h2>
+    <motion.p 
+      className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.1 }}
+      viewport={{ once: true }}
+    >
+      Screens from the app I helped develop
+    </motion.p>
+  </div>
+
+  <div className="grid md:grid-cols-3 gap-8">
+    {screenshots.map((image, index) => (
+      <motion.div 
+        key={index}
+        className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        whileHover={{ y: -10 }}
+      >
+        <div className="p-4 bg-gray-100 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex gap-1.5">
+            <div className="w-3 h-3 rounded-full bg-red-400"></div>
+            <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <motion.div 
-                key={item}
-                className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: item * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-              >
-                <div className="p-4 bg-gray-100 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                  </div>
-                </div>
-                <img 
-                  src={`https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80`} 
-                  alt={`Room Finder screen ${item}`}
-                  className="w-full h-auto"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </section>
+        </div>
+        <img
+          src={image}
+          alt={`Room Finder screenshot ${index + 1}`}
+          className="w-full h-auto object-cover"
+          loading="lazy"
+        />
+      </motion.div>
+    ))}
+  </div>
+</section>
 
         {/* Call to Action */}
         <motion.div 
@@ -488,12 +502,12 @@ export default function RoomFinder() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Explore Our Team's Work</h2>
+          <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Explore our Work</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-            See how our student team created this campus solution with modern technologies and collaborative development.
+            See how we created this campus solution with modern technologies and collaborative development.
           </p>
           <a
-            href="https://github.com/example/room-finder"
+            href="https://github.com/NoahTheLee/EGR302_Empty_Room"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-800 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors text-lg font-medium"

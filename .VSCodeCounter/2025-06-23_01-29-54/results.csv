@@ -1,0 +1,40 @@
+"filename", "language", "TypeScript JSX", "TypeScript", "XML", "CSS", "JavaScript", "JSON with Comments", "JSON", "YAML", "Markdown", "HTML", "comment", "blank", "total"
+"/Users/mohammedalsheikh/my-portfolio/README.md", "Markdown", 0, 0, 0, 0, 0, 0, 0, 0, 45, 0, 0, 10, 55
+"/Users/mohammedalsheikh/my-portfolio/eslint.config.js", "JavaScript", 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 18, 1, 29
+"/Users/mohammedalsheikh/my-portfolio/index.html", "HTML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 1, 14
+"/Users/mohammedalsheikh/my-portfolio/package-lock.json", "JSON", 0, 0, 0, 0, 0, 0, 6273, 0, 0, 0, 0, 1, 6274
+"/Users/mohammedalsheikh/my-portfolio/package.json", "JSON", 0, 0, 0, 0, 0, 0, 53, 0, 0, 0, 0, 1, 54
+"/Users/mohammedalsheikh/my-portfolio/pnpm-workspace.yaml", "YAML", 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 3
+"/Users/mohammedalsheikh/my-portfolio/postcss.config.js", "JavaScript", 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+"/Users/mohammedalsheikh/my-portfolio/public/vite.svg", "XML", 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5
+"/Users/mohammedalsheikh/my-portfolio/src/App.css", "CSS", 0, 0, 0, 37, 0, 0, 0, 0, 0, 0, 0, 6, 43
+"/Users/mohammedalsheikh/my-portfolio/src/App.tsx", "TypeScript JSX", 44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8, 53
+"/Users/mohammedalsheikh/my-portfolio/src/assets/react.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/mohammedalsheikh/my-portfolio/src/components/Footer.tsx", "TypeScript JSX", 277, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 18, 301
+"/Users/mohammedalsheikh/my-portfolio/src/components/Navbar.tsx", "TypeScript JSX", 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 9, 116
+"/Users/mohammedalsheikh/my-portfolio/src/components/ProjectCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/mohammedalsheikh/my-portfolio/src/components/ThemeProvider.tsx", "TypeScript JSX", 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 36
+"/Users/mohammedalsheikh/my-portfolio/src/components/ThemeToggle.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/mohammedalsheikh/my-portfolio/src/data/projects.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/mohammedalsheikh/my-portfolio/src/data/timeline.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/mohammedalsheikh/my-portfolio/src/firebase.ts", "TypeScript", 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 24
+"/Users/mohammedalsheikh/my-portfolio/src/hooks/useDarkMode.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/mohammedalsheikh/my-portfolio/src/hooks/useHomeContent.ts", "TypeScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 21
+"/Users/mohammedalsheikh/my-portfolio/src/index.css", "CSS", 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 2, 8
+"/Users/mohammedalsheikh/my-portfolio/src/main.tsx", "TypeScript JSX", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 10
+"/Users/mohammedalsheikh/my-portfolio/src/pages/AboutMe.tsx", "TypeScript JSX", 213, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 17, 242
+"/Users/mohammedalsheikh/my-portfolio/src/pages/AdminMessages.tsx", "TypeScript JSX", 249, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 18, 269
+"/Users/mohammedalsheikh/my-portfolio/src/pages/Contact.tsx", "TypeScript JSX", 261, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 19, 287
+"/Users/mohammedalsheikh/my-portfolio/src/pages/Home.tsx", "TypeScript JSX", 382, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 33, 418
+"/Users/mohammedalsheikh/my-portfolio/src/pages/ProjectDetail.tsx", "TypeScript JSX", 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4
+"/Users/mohammedalsheikh/my-portfolio/src/pages/Projects.tsx", "TypeScript JSX", 316, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 20, 341
+"/Users/mohammedalsheikh/my-portfolio/src/pages/projects/HallLink.tsx", "TypeScript JSX", 415, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 27, 450
+"/Users/mohammedalsheikh/my-portfolio/src/pages/projects/RoomFinder.tsx", "TypeScript JSX", 462, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 36, 508
+"/Users/mohammedalsheikh/my-portfolio/src/pages/projects/Soundtrack.tsx", "TypeScript JSX", 482, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 36, 529
+"/Users/mohammedalsheikh/my-portfolio/src/services/firebaseService.ts", "TypeScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 25
+"/Users/mohammedalsheikh/my-portfolio/src/vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"/Users/mohammedalsheikh/my-portfolio/tailwind.config.js", "JavaScript", 0, 0, 0, 0, 112, 0, 0, 0, 0, 0, 5, 6, 123
+"/Users/mohammedalsheikh/my-portfolio/tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 3, 23
+"/Users/mohammedalsheikh/my-portfolio/tsconfig.node.json", "JSON", 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 1, 15
+"/Users/mohammedalsheikh/my-portfolio/vite.config.ts", "TypeScript", 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 8
+"Total", "-", 3242, 54, 6, 43, 128, 20, 6340, 2, 45, 13, 106, 304, 10303

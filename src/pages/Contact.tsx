@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import toast, { Toaster } from 'react-hot-toast';
 import { EnvelopeIcon, DocumentArrowDownIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import { FiGithub, FiLinkedin, FiSend, FiCheckCircle } from 'react-icons/fi';
+import { saveContactMessage } from '../services/firebaseService';
 
 type FormState = {
   name: string;
@@ -22,33 +23,33 @@ const Contact = () => {
   });
 
   const socialLinks = [
-    { 
-      Icon: EnvelopeIcon, 
-      title: 'Email', 
-      subtitle: 'sheikh.dev@example.com', 
-      href: 'mailto:sheikh.dev@example.com',
-      action: () => navigator.clipboard.writeText('sheikh.dev@example.com')
+    {
+      Icon: EnvelopeIcon,
+      title: 'Email',
+      subtitle: 'moalsheikh2004@gmail.com',
+      href: 'mailto:moalsheikh2004@gmail.com',
+      action: () => navigator.clipboard.writeText('moalsheikh2004@gmail.com'),
     },
-    { 
-      Icon: FiLinkedin, 
-      title: 'LinkedIn', 
-      subtitle: '/in/mohammed-alsheikh', 
-      href: 'https://linkedin.com' 
+    {
+      Icon: FiLinkedin,
+      title: 'LinkedIn',
+      subtitle: '/in/moalsheikh',
+      href: 'https://www.linkedin.com/in/moalsheikh/',
     },
-    { 
-      Icon: FiGithub, 
-      title: 'GitHub', 
-      subtitle: '@mohammed-dev', 
-      href: 'https://github.com' 
+    {
+      Icon: FiGithub,
+      title: 'GitHub',
+      subtitle: '@mohalsheikh',
+      href: 'https://github.com/mohalsheikh',
     },
-    { 
-      Icon: DocumentArrowDownIcon, 
-      title: 'Resume', 
-      subtitle: 'Download PDF', 
-      href: '/resume.pdf', 
-      download: true,
-      action: () => toast.success('Resume downloaded!')
-    },
+    {
+      Icon: DocumentArrowDownIcon,
+      title: 'Resume',
+      subtitle: 'View PDF',
+      href: '/Mohammed_Alsheikh_Resume_04.pdf',
+      action: () => toast.success('Opening resume...'),
+      target: '_blank',
+    },    
   ];
 
   useEffect(() => {
@@ -66,10 +67,15 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setForm(prev => ({ ...prev, isSending: true }));
-    
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      toast.custom((t) => (
+      await saveContactMessage({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        message: form.message.trim(),
+      });
+
+      toast.custom(() => (
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -79,8 +85,10 @@ const Contact = () => {
           <span className="text-gray-700 dark:text-gray-200">Message sent successfully!</span>
         </motion.div>
       ));
+
       setForm({ name: '', email: '', message: '', isValid: false, isSending: false });
     } catch (error) {
+      console.error('❌ Error saving message:', error);
       toast.error('Failed to send message. Please try again.');
       setForm(prev => ({ ...prev, isSending: false }));
     }
@@ -113,14 +121,15 @@ const Contact = () => {
             onSubmit={handleSubmit}
             className="space-y-6 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/50"
           >
+            {/* Name Field */}
             <div className="space-y-1">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Your Name</label>
               <input
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-700/30 border border-gray-200/80 dark:border-gray-600 focus:ring-2 focus:ring-brand/50 transition-all placeholder:text-gray-400/80"
-                placeholder="Mohammed Alsheikh"
+                className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-700/30 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-brand/50 transition-all placeholder:text-gray-400/80"
+                placeholder="First and Last name"
               />
               <AnimatePresence>
                 {form.name.length > 0 && form.name.length < 3 && (
@@ -136,14 +145,15 @@ const Contact = () => {
               </AnimatePresence>
             </div>
 
+            {/* Email Field */}
             <div className="space-y-1">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
               <input
                 type="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-700/30 border border-gray-200/80 dark:border-gray-600 focus:ring-2 focus:ring-brand/50 transition-all placeholder:text-gray-400/80"
-                placeholder="hello@sheikhdev.com"
+                className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-700/30 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-brand/50 transition-all placeholder:text-gray-400/80"
+                placeholder="hello@example.com"
               />
               <AnimatePresence>
                 {form.email.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) && (
@@ -159,13 +169,14 @@ const Contact = () => {
               </AnimatePresence>
             </div>
 
+            {/* Message Field */}
             <div className="space-y-1">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Your Message</label>
               <textarea
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 rows={5}
-                className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-700/30 border border-gray-200/80 dark:border-gray-600 focus:ring-2 focus:ring-brand/50 transition-all placeholder:text-gray-400/80"
+                className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-700/30 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-brand/50 transition-all placeholder:text-gray-400/80"
                 placeholder="Hey Mohammed, let's work on something amazing..."
               />
               <AnimatePresence>
@@ -182,6 +193,7 @@ const Contact = () => {
               </AnimatePresence>
             </div>
 
+            {/* Submit Button */}
             <motion.button
               type="submit"
               disabled={!form.isValid || form.isSending}
@@ -217,24 +229,23 @@ const Contact = () => {
             </motion.button>
           </motion.form>
 
-          {/* Social Cards & Map */}
+          {/* Social Links + Map */}
           <div className="grid grid-cols-2 gap-5 relative">
             <div className="absolute -top-20 -right-20 w-96 h-96 bg-gradient-to-r from-brand/20 to-accent/20 rounded-full blur-3xl opacity-40 animate-pulse" />
-            
-            {socialLinks.map((link, index) => (
+            {socialLinks.map((link, i) => (
               <motion.a
-                key={index}
+                key={i}
+                target={link.target || undefined}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 + 0.4 }}
+                transition={{ delay: i * 0.1 + 0.4 }}
                 href={link.href}
-                download={link.download}
-                onClick={(e) => {
+                onClick={() => {
                   if (link.action) {
-                    e.preventDefault();
-                    link.action();
+                    link.action(); 
+                    // show toast
                   }
-                }}
+                                }}
                 className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-5 rounded-2xl hover:bg-white dark:hover:bg-gray-700/80 transition-all border border-white/30 dark:border-gray-600/50 hover:border-brand/40 shadow-lg hover:shadow-brand/10 relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -243,32 +254,31 @@ const Contact = () => {
                 <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{link.subtitle}</p>
               </motion.a>
             ))}
+<div className="col-span-2 bg-white/90 dark:bg-gray-800/80 backdrop-blur-md p-6 rounded-2xl border border-white/30 dark:border-gray-600/50 shadow-xl relative overflow-hidden">
+  <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-accent/10 opacity-20 pointer-events-none" />
+  
+  <div className="flex items-center gap-4 mb-4">
+    <MapPinIcon className="w-8 h-8 text-brand" />
+    <div>
+      <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Based in</h3>
+      <p className="text-gray-600 dark:text-gray-400 text-sm">Riverside, CA 🇺🇸</p>
+    </div>
+  </div>
 
-            {/* Location Card */}
-            <div className="col-span-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-6 rounded-2xl border border-white/30 dark:border-gray-600/50 shadow-lg relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-accent/10 opacity-30" />
-              <MapPinIcon className="w-8 h-8 text-brand mb-4" />
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Based in</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Riverside, CA 🇺🇸</p>
-              <div className="mt-4 h-48 bg-gray-100/80 dark:bg-gray-700/50 rounded-xl overflow-hidden relative">
-                <img 
-                  src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/-117.3758,33.9806,12,0/600x300?access_token=YOUR_MAPBOX_TOKEN"
-                  alt="Location Map"
-                  className="w-full h-full object-cover opacity-90"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-              </div>
-            </div>
+  <div className="rounded-xl overflow-hidden border border-gray-300 dark:border-gray-600 shadow-md">
+    <iframe
+      title="Riverside, CA Map"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=-117.3858%2C33.9756%2C-117.3658%2C33.9856&layer=mapnik&marker=33.9806%2C-117.3758"
+      className="w-full h-60 border-0"
+      loading="lazy"
+    />
+  </div>
+</div>
+
           </div>
         </div>
       </div>
-
-      <Toaster 
-        position="bottom-right" 
-        toastOptions={{
-          className: '!bg-transparent !p-0 !shadow-none',
-        }} 
-      />
+      <Toaster position="bottom-right" toastOptions={{ className: '!bg-transparent !p-0 !shadow-none' }} />
     </section>
   );
 };

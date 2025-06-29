@@ -3,23 +3,32 @@ import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import {
   FaGithub,
   FaLinkedin,
-  FaTwitter,
   FaInstagram,
   FaEnvelope,
   FaPhone,
   FaArrowUp,
-  FaFileAlt,
-  FaBook,
+  // FaFileAlt,
+  // FaBook,
   FaUser,
   FaComments,
   FaCode,
-  FaQuestionCircle,
+  // FaQuestionCircle,
   FaRegMoon,
-  FaSun
+  FaSun,
+  FaBuilding,
+  FaMusic,
+  FaMapMarkedAlt,
+  // FaTools,
 } from 'react-icons/fa';
+import {FiCheckCircle,
+} from 'react-icons/fi';
+
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import toast, { Toaster } from 'react-hot-toast';
+import { saveNewsletterEmail } from '../services/firebaseService';
+
+
 
 const footerVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -49,34 +58,64 @@ export default function Footer() {
   }, [scrollY]);
 
   const socialLinks = [
-    { name: 'GitHub', url: '#', icon: <FaGithub />, tip: 'Check my code' },
-    { name: 'LinkedIn', url: '#', icon: <FaLinkedin />, tip: 'Connect professionally' },
-    { name: 'Twitter', url: '#', icon: <FaTwitter />, tip: 'Follow my thoughts' },
-    { name: 'Instagram', url: '#', icon: <FaInstagram />, tip: 'See my journey' }
+    { name: 'GitHub', url: 'https://github.com/mohalsheikh', icon: <FaGithub />, tip: 'Check my code' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/moalsheikh/', icon: <FaLinkedin />, tip: 'Connect professionally' },
+    { name: 'Instagram', url: 'https://www.instagram.com/mo.alshe5/', icon: <FaInstagram />, tip: 'See my journey' }
   ];
 
   const navLinks = [
-    { name: 'Projects', url: '#', icon: <FaCode className="mr-2" /> },
-    { name: 'Blog', url: '#', icon: <FaBook className="mr-2" /> },
-    { name: 'About', url: '#', icon: <FaUser className="mr-2" /> },
-    { name: 'Contact', url: '#', icon: <FaComments className="mr-2" /> }
+    { name: 'Projects', url: '/projects', icon: <FaCode className="mr-2" /> },
+    { name: 'About', url: '/aboutme', icon: <FaUser className="mr-2" /> },
+    { name: 'Contact', url: '/contact', icon: <FaComments className="mr-2" /> }
   ];
 
   const resourceLinks = [
-    { name: 'Documentation', url: '#', icon: <FaFileAlt className="mr-2" /> },
-    { name: 'Tutorials', url: '#', icon: <FaBook className="mr-2" /> },
-    { name: 'Community', url: '#', icon: <FaComments className="mr-2" /> },
-    { name: 'Support', url: '#', icon: <FaQuestionCircle className="mr-2" /> }
+    {
+      name: 'HallLink',
+      url: '/projects/halllink',
+      icon: <FaBuilding className="mr-2" /> // Represents dorms/halls
+    },
+    {
+      name: 'Soundtrack',
+      url: '/projects/soundtrack',
+      icon: <FaMusic className="mr-2" /> // Represents music
+    },
+    {
+      name: 'Room Finder',
+      url: '/projects/room-finder',
+      icon: <FaMapMarkedAlt className="mr-2" /> // Represents finding locations
+    },
   ];
+  
+  
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      toast.success('Thanks for subscribing! 🎉');
-      setEmail('');
-      animate('#newsletter-form', { y: [0, -10, 0], scale: [1, 1.05, 1] }, { duration: 0.3 });
+  
+    if (email.trim()) {
+      try {
+        await saveNewsletterEmail(email.trim());
+  
+        toast.custom(() => (
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg flex items-center gap-3"
+          >
+            <FiCheckCircle className="w-6 h-6 text-green-500" />
+            <span className="text-gray-700 dark:text-gray-200">You're on the list!</span>
+          </motion.div>
+        ));
+  
+        setEmail('');
+        animate('#newsletter-form', { y: [0, -10, 0], scale: [1, 1.05, 1] }, { duration: 0.3 });
+      } catch (error) {
+        console.error('❌ Error saving newsletter email:', error);
+        toast.error('Something went wrong. Try again.');
+      }
     }
   };
+  
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -138,7 +177,7 @@ export default function Footer() {
               >
                 Mohammed Alsheikh
               </motion.h3>
-              <button
+              {/* <button
                 onClick={toggleTheme}
                 className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               >
@@ -147,7 +186,7 @@ export default function Footer() {
                 ) : (
                   <FaRegMoon className="text-xl text-gray-600 dark:text-gray-300" />
                 )}
-              </button>
+              </button> */}
             </div>
             <motion.form 
               id="newsletter-form"
@@ -173,7 +212,7 @@ export default function Footer() {
                   Join
                 </motion.button>
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400">No spam, just quality content</p>
+              {/* <p className="text-xs text-gray-500 dark:text-gray-400">No spam, just quality content</p> */}
             </motion.form>
           </div>
 
@@ -202,7 +241,7 @@ export default function Footer() {
               </ul>
             </div>
             <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Resources</h4>
+              <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Projects</h4>
               <ul className="space-y-3">
                 {resourceLinks.map((link) => (
                   <motion.li key={link.name} whileTap={{ scale: 0.98 }}>
@@ -243,11 +282,11 @@ export default function Footer() {
             <div className="mt-8 space-y-3">
               <motion.div
                 className="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
-                onClick={() => copyToClipboard('contact@example.com')}
+                onClick={() => copyToClipboard('moalsheikh2004@gmail.com')}
                 whileTap={{ scale: 0.98 }}
               >
                 <FaEnvelope className="mr-3 text-indigo-500 flex-shrink-0" />
-                <span className="text-gray-500 dark:text-gray-400">contact@example.com</span>
+                <span className="text-gray-500 dark:text-gray-400">moalsheikh2004@gmail.com</span>
               </motion.div>
               <motion.div
                 className="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
@@ -265,10 +304,10 @@ export default function Footer() {
         <motion.div className="fixed bottom-0 left-0 right-0 h-1 bg-indigo-600/20 z-50" style={{ scaleX: scrollProgress }} />
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-12">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            © {currentYear} Mohammed Alsheikh. Crafted with <span className="text-indigo-600">♥</span>
+            © {currentYear} Mohammed Alsheikh. <span className="text-indigo-600"></span>
           </p>
           <div className="flex space-x-6">
-            {['Privacy Policy', 'Terms', 'Cookies'].map((item) => (
+            {/* {['Privacy Policy', 'Terms', 'Cookies'].map((item) => (
               <motion.a
                 key={item}
                 href="#"
@@ -278,23 +317,24 @@ export default function Footer() {
                 {item}
                 <span className="absolute bottom-0 left-0 w-0 h-px bg-indigo-600 transition-all group-hover:w-full" />
               </motion.a>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
 
       {/* Back to Top */}
-      <motion.button
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-8 right-8 p-4 rounded-full bg-indigo-600 text-white shadow-xl hover:shadow-2xl transition-all flex items-center justify-center"
-        style={{ opacity: isVisible ? 1 : 0 }}
-        whileHover={{ scale: 1.1, rotate: 360 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label="Back to top"
-      >
-        <div className="absolute inset-0 border-2 border-indigo-300/50 rounded-full animate-ping" />
-        <FaArrowUp className="text-xl" />
-      </motion.button>
+{/* Back to Top */}
+<motion.button
+  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  className="fixed bottom-8 right-8 z-[99] p-4 rounded-full bg-indigo-600 text-white shadow-xl hover:shadow-2xl transition-all flex items-center justify-center"
+  style={{ opacity: isVisible ? 1 : 0, pointerEvents: isVisible ? 'auto' : 'none' }}
+  whileHover={{ scale: 1.1, rotate: 360 }}
+  whileTap={{ scale: 0.95 }}
+  aria-label="Back to top"
+>
+  <div className="absolute inset-0 border-2 border-indigo-300/50 rounded-full animate-ping" />
+  <FaArrowUp className="text-xl relative z-10" />
+</motion.button>
     </motion.footer>
   );
 }

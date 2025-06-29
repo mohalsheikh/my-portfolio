@@ -11,6 +11,8 @@ import { useEffect, useState } from 'react';
 import HallLink from './pages/projects/HallLink';
 import Soundtrack from './pages/projects/Soundtrack';
 import RoomFinder from './pages/projects/RoomFinder';
+import AdminMessages from './pages/AdminMessages';
+
 
 
 
@@ -37,6 +39,7 @@ function App() {
               <Route path="/projects/halllink" element={<HallLink />} />
               <Route path="/projects/soundtrack" element={<Soundtrack />} />
               <Route path="/projects/room-finder" element={<RoomFinder />} />
+              <Route path="/admin/messages" element={<AdminMessages />} />
               <Route path="*" element={<div>404 - Page not found</div>} />
             </Routes>
           </main>
