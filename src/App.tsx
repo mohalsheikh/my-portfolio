@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import HallLink from './pages/projects/HallLink';
 import Soundtrack from './pages/projects/Soundtrack';
 import RoomFinder from './pages/projects/RoomFinder';
+import VisionAssist from './pages/projects/visionassist';
 import AdminMessages from './pages/AdminMessages';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
@@ -41,6 +42,7 @@ function App() {
               <Route path="/projects/halllink" element={<HallLink />} />
               <Route path="/projects/soundtrack" element={<Soundtrack />} />
               <Route path="/projects/room-finder" element={<RoomFinder />} />
+              <Route path="/projects/visionassist" element={<VisionAssist />} />
               <Route path="/admin/messages" element={<AdminMessages />} />
               <Route path="*" element={<div>404 - Page not found</div>} />
               <Route path="/privacy" element={<Privacy />} />

@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import { FiExternalLink, FiGithub, FiChevronRight } from "react-icons/fi";
 import Tilt from 'react-parallax-tilt';
 import halllinkVideo from '../assets/lancerarmspromo2.mp4';
+import visionAssistVideo from '../assets/smart glasses.mp4';
 import moporto from '../assets/moporto.png';
 import emptyroom from '../assets/emptyroom.png';
 import soundtrackporto from '../assets/soundtrackporto.png';
-
 
 type Project = {
   slug: string;
@@ -25,15 +25,25 @@ type Project = {
 
 const projects: Project[] = [
   {
-    slug: "halllink",
-    title: "HallLink – Student‑Housing Super‑App",
+    slug: "visionassist",
+    title: "VisionAssist AI – Smart Glasses for the Blind",
     description:
-      "Mobile app designed to streamline campus housing by connecting students with RAs, events, maps, safety tools, and an AI chatbot. Presented at CBU’s Innovation Challenge, where it received strong interest from university leadership.",
+      "AI-powered assistive technology combining custom-trained computer vision models, real-time object detection, sign language recognition, and voice-controlled navigation to help visually impaired users navigate independently. Senior Capstone Project.",
+    stack: ["Python", "YOLOv8", "MediaPipe", "OpenCV", "PyTorch"],
+    video: visionAssistVideo,
+    live: "#",
+    source: "https://github.com/mohalsheikh/Enhanced-Smart-Glasses",
+    featured: true,
+  },
+  {
+    slug: "halllink",
+    title: "HallLink – Student-Housing Super-App",
+    description:
+      "Mobile app designed to streamline campus housing by connecting students with RAs, events, maps, safety tools, and an AI chatbot. Presented at CBU's Innovation Challenge, where it received strong interest from university leadership.",
     stack: ["Swift", "Firebase", "Python", "JavaScript"],
     video: halllinkVideo,
     live: "#",
     source: "https://github.com/mohalsheikh/lancer-Arms-app",
-    featured: true,
   },    
   {
     slug: "soundtrack",
@@ -264,12 +274,23 @@ export default function Projects() {
               >
                 <div className="h-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30 dark:border-gray-700 hover:border-brand/30 transition-all hover:shadow-2xl">
                   <div className="relative mb-6 rounded-xl overflow-hidden border border-white/30 dark:border-gray-700">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-56 object-cover"
-                      loading="lazy"
-                    />
+                    {project.video ? (
+                      <video
+                        src={project.video}
+                        className="w-full h-56 object-cover"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-56 object-cover"
+                        loading="lazy"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent" />
                   </div>
 
