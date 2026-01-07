@@ -7,8 +7,8 @@ import {
   FiZap, FiUsers, FiAward, FiBookOpen
 } from "react-icons/fi";
 
-// Import your video
-import demoVideo from '../../assets/smart glasses.mp4';
+// YouTube video ID - replace with your actual video ID after uploading
+const YOUTUBE_VIDEO_ID = "https://youtu.be/Bi10vWyqO6g";
 
 // Import your screenshots here - update paths as needed
 // import screenshot1 from '../../assets/visionassist/screenshot1.png';
@@ -226,7 +226,7 @@ export default function VisionAssistProject() {
               transition={{ delay: 0.6 }}
             >
               <a
-                href="https://github.com/mohalsheikh/Enhanced-Smart-Glasses"
+                href="https://github.com/mohalsheikh/visionassist"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl font-medium"
@@ -345,19 +345,16 @@ export default function VisionAssistProject() {
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-brand/20 to-purple-500/20 rounded-3xl blur-xl"></div>
             <div className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700">
-              {/* Demo Video */}
+              {/* YouTube Video Embed */}
               <div className="aspect-video bg-gray-900">
-                <video 
-                  className="w-full h-full object-cover"
-                  controls
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                >
-                  <source src={demoVideo} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1`}
+                  title="VisionAssist Demo"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
           </motion.div>
@@ -639,7 +636,7 @@ export default function VisionAssistProject() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://github.com/mohalsheikh/Enhanced-Smart-Glasses"
+              href="https://github.com/mohalsheikh/visionassist"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl text-lg font-medium"
@@ -648,7 +645,7 @@ export default function VisionAssistProject() {
               View Source Code
             </a>
             <a
-              href="https://www.linkedin.com/in/moalsheikh/"
+              href="https://linkedin.com/in/mohalsheikh"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-brand to-purple-500 text-white hover:opacity-90 transition-all shadow-lg hover:shadow-xl text-lg font-medium"

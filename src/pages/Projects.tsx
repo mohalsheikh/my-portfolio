@@ -3,13 +3,16 @@
 ─────────────────────────────────────────────── */
 import { motion, Variants } from "framer-motion";
 import { Link } from "react-router-dom";
-import { FiExternalLink, FiGithub, FiChevronRight } from "react-icons/fi";
+import { FiExternalLink, FiGithub, FiChevronRight, FiPlay } from "react-icons/fi";
 import Tilt from 'react-parallax-tilt';
 import halllinkVideo from '../assets/lancerarmspromo2.mp4';
-import visionAssistVideo from '../assets/smart glasses.mp4';
 import moporto from '../assets/moporto.png';
 import emptyroom from '../assets/emptyroom.png';
 import soundtrackporto from '../assets/soundtrackporto.png';
+
+// For VisionAssist - use a thumbnail image
+// Create a thumbnail from your video or use a screenshot
+// import visionassistThumb from '../assets/visionassist-thumb.png';
 
 type Project = {
   slug: string;
@@ -30,9 +33,9 @@ const projects: Project[] = [
     description:
       "AI-powered assistive technology combining custom-trained computer vision models, real-time object detection, sign language recognition, and voice-controlled navigation to help visually impaired users navigate independently. Senior Capstone Project.",
     stack: ["Python", "YOLOv8", "MediaPipe", "OpenCV", "PyTorch"],
-    video: visionAssistVideo,
+    image: moporto, // Replace with visionassistThumb once you create a thumbnail
     live: "#",
-    source: "https://github.com/mohalsheikh/Enhanced-Smart-Glasses",
+    source: "https://github.com/mohalsheikh/visionassist",
     featured: true,
   },
   {
