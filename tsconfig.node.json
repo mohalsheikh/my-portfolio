@@ -8,7 +8,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
-    "noEmit": true
+    "noEmit": true,
+    "jsx": "react-jsx",
   },
   "include": ["vite.config.ts"]
 }

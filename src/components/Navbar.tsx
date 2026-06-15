@@ -1,12 +1,13 @@
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
-  { name: "Home", path: "/" },
-  { name: "AboutMe", path: "/aboutme" },
-  { name: "Projects", path: "/projects" },
-  { name: "Contact", path: "/contact" },
+  { name: "Home", path: "/", idx: "01" },
+  { name: "About", path: "/aboutme", idx: "02" },
+  { name: "Work", path: "/projects", idx: "03" },
+  { name: "Contact", path: "/contact", idx: "04" },
 ];
 
 export default function Navbar() {
@@ -14,98 +15,105 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  /* shadow on scroll */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* close menu on route change */
   useEffect(() => setOpen(false), [pathname]);
 
   return (
     <nav
-      className={`fixed inset-x-0 z-50 transition-all
-        ${scrolled ? "bg-white/80 dark:bg-black/80 backdrop-blur shadow" : ""}
-      `}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-ink/80 backdrop-blur-xl border-b border-line" : "border-b border-transparent"
+      }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
-        {/* logo */}
-        <Link
-          to="/"
-          className="text-2xl font-extrabold bg-gradient-to-r from-brand to-accent bg-clip-text text-transparent"
-        >
-          Mohammed
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 py-4">
+        <Link to="/" className="group flex items-center gap-2.5">
+          <span className="grid h-9 w-9 place-items-center rounded-lg border border-line bg-panel font-display font-extrabold text-violetx group-hover:border-violetx transition-colors">
+            M
+          </span>
+          <span className="font-display font-bold tracking-wide text-sm text-chrome hidden sm:block">
+            ALSHEIKH<span className="text-violetx">.</span>
+          </span>
         </Link>
 
-        {/* desktop links */}
-        <div className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-brand after:transition-transform
-                hover:after:scale-x-100
-                ${
-                  pathname === item.path
-                    ? "text-brand font-semibold after:scale-x-100"
-                    : "text-gray-700 dark:text-gray-300"
+        <div className="hidden md:flex items-center gap-1">
+          {navItems.map((item) => {
+            const active = pathname === item.path;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`group relative px-4 py-2 rounded-lg text-sm transition-colors ${
+                  active ? "text-chrome" : "text-mist hover:text-chrome"
                 }`}
-            >
-              {item.name}
-            </Link>
-          ))}
+              >
+                <span className="font-mono text-[10px] text-violetx mr-1.5">{item.idx}</span>
+                {item.name}
+                {active && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute inset-0 -z-10 rounded-lg bg-panel border border-line"
+                  />
+                )}
+              </Link>
+            );
+          })}
+          <a
+            href="/Mohammed_Alsheikh_Resume_04.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-3 rounded-lg bg-violetx px-4 py-2 text-sm font-medium text-white hover:shadow-glowsm transition-shadow"
+          >
+            Résumé
+          </a>
         </div>
 
-        {/* hamburger */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden relative w-9 h-9 rounded focus:outline-none group"
-          aria-label="Toggle Menu"
+          className="md:hidden relative h-10 w-10 rounded-lg border border-line bg-panel grid place-items-center"
+          aria-label="Toggle menu"
         >
-          {/* bars */}
-          <span
-            className={`absolute inset-x-1.5 top-1/2 h-0.5 bg-current transition-transform
-              ${open ? "rotate-45" : "-translate-y-2"}`}
-          />
-          <span
-            className={`absolute inset-x-1.5 top-1/2 h-0.5 bg-current transition-opacity
-              ${open ? "opacity-0" : "opacity-100"}`}
-          />
-          <span
-            className={`absolute inset-x-1.5 top-1/2 h-0.5 bg-current transition-transform
-              ${open ? "-rotate-45" : "translate-y-2"}`}
-          />
+          <span className={`absolute h-0.5 w-5 bg-chrome transition-transform ${open ? "rotate-45" : "-translate-y-1.5"}`} />
+          <span className={`absolute h-0.5 w-5 bg-chrome transition-opacity ${open ? "opacity-0" : ""}`} />
+          <span className={`absolute h-0.5 w-5 bg-chrome transition-transform ${open ? "-rotate-45" : "translate-y-1.5"}`} />
         </button>
       </div>
 
-      {/* mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ type: "tween" }}
-            className="md:hidden bg-white/90 dark:bg-black/90 backdrop-blur border-t border-white/10"
+            className="md:hidden overflow-hidden bg-ink/95 backdrop-blur-xl border-b border-line"
           >
-            <ul className="px-6 py-6 space-y-4">
+            <ul className="px-6 py-5 space-y-1">
               {navItems.map((item) => (
                 <li key={item.path}>
                   <Link
                     to={item.path}
-                    className={`block text-lg py-1
-                      ${
-                        pathname === item.path
-                          ? "text-brand font-semibold"
-                          : "text-gray-800 dark:text-gray-200"
-                      }`}
+                    className={`flex items-center gap-3 py-3 text-lg ${
+                      pathname === item.path ? "text-violetx" : "text-chrome"
+                    }`}
                   >
+                    <span className="font-mono text-xs text-violetx">{item.idx}</span>
                     {item.name}
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/Mohammed_Alsheikh_Resume_04.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block rounded-lg bg-violetx px-4 py-3 text-center font-medium text-white"
+                >
+                  Download Résumé
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}

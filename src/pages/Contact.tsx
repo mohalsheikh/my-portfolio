@@ -1,286 +1,204 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import toast, { Toaster } from 'react-hot-toast';
-import { EnvelopeIcon, DocumentArrowDownIcon, MapPinIcon } from '@heroicons/react/24/outline';
-import { FiGithub, FiLinkedin, FiSend, FiCheckCircle } from 'react-icons/fi';
-import { saveContactMessage } from '../services/firebaseService';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import toast, { Toaster } from "react-hot-toast";
+import { FiGithub, FiLinkedin, FiMail, FiFileText, FiSend, FiCheckCircle, FiCopy } from "react-icons/fi";
+import { saveContactMessage } from "../services/firebaseService";
+import { Eyebrow, Reveal } from "../components/Section";
 
-type FormState = {
-  name: string;
-  email: string;
-  message: string;
-  isValid: boolean;
-  isSending: boolean;
-};
+type FormState = { name: string; email: string; message: string };
 
-const Contact = () => {
-  const [form, setForm] = useState<FormState>({
-    name: '',
-    email: '',
-    message: '',
-    isValid: false,
-    isSending: false,
-  });
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const socialLinks = [
-    {
-      Icon: EnvelopeIcon,
-      title: 'Email',
-      subtitle: 'moalsheikh2004@gmail.com',
-      href: 'mailto:moalsheikh2004@gmail.com',
-      action: () => navigator.clipboard.writeText('moalsheikh2004@gmail.com'),
-    },
-    {
-      Icon: FiLinkedin,
-      title: 'LinkedIn',
-      subtitle: '/in/moalsheikh',
-      href: 'https://www.linkedin.com/in/moalsheikh/',
-    },
-    {
-      Icon: FiGithub,
-      title: 'GitHub',
-      subtitle: '@mohalsheikh',
-      href: 'https://github.com/mohalsheikh',
-    },
-    {
-      Icon: DocumentArrowDownIcon,
-      title: 'Resume',
-      subtitle: 'View PDF',
-      href: '/Mohammed_Alsheikh_Resume_04.pdf',
-      action: () => toast.success('Opening resume...'),
-      target: '_blank',
-    },    
-  ];
+const channels = [
+  { Icon: FiMail, title: "Email", sub: "moalsheikh2004@gmail.com", href: "mailto:moalsheikh2004@gmail.com", copy: "moalsheikh2004@gmail.com" },
+  { Icon: FiLinkedin, title: "LinkedIn", sub: "/in/moalsheikh", href: "https://www.linkedin.com/in/moalsheikh/" },
+  { Icon: FiGithub, title: "GitHub", sub: "@mohalsheikh", href: "https://github.com/mohalsheikh" },
+  { Icon: FiFileText, title: "Résumé", sub: "View PDF", href: "/Mohammed_Alsheikh_Resume_04.pdf", target: "_blank" },
+];
+
+export default function Contact() {
+  const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" });
+  const [valid, setValid] = useState(false);
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
-    const validateForm = () => {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return (
-        form.name.trim().length > 2 &&
-        emailRegex.test(form.email) &&
-        form.message.trim().length > 10
-      );
-    };
-    setForm(prev => ({ ...prev, isValid: validateForm() }));
-  }, [form.name, form.email, form.message]);
+    setValid(form.name.trim().length > 2 && EMAIL_RE.test(form.email) && form.message.trim().length > 10);
+  }, [form]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setForm(prev => ({ ...prev, isSending: true }));
-
+    if (!valid) return;
+    setSending(true);
     try {
       await saveContactMessage({
         name: form.name.trim(),
         email: form.email.trim(),
         message: form.message.trim(),
       });
-
       toast.custom(() => (
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg flex items-center gap-3"
-        >
-          <FiCheckCircle className="w-6 h-6 text-green-500" />
-          <span className="text-gray-700 dark:text-gray-200">Message sent successfully!</span>
-        </motion.div>
+        <div className="flex items-center gap-3 rounded-xl border border-line bg-panel px-4 py-3 shadow-glowsm">
+          <FiCheckCircle className="h-5 w-5 text-violetx" />
+          <span className="text-sm text-chrome">Message sent — I'll be in touch.</span>
+        </div>
       ));
-
-      setForm({ name: '', email: '', message: '', isValid: false, isSending: false });
-    } catch (error) {
-      console.error('❌ Error saving message:', error);
-      toast.error('Failed to send message. Please try again.');
-      setForm(prev => ({ ...prev, isSending: false }));
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      toast.error("Couldn't send that. Please try again.");
+    } finally {
+      setSending(false);
     }
   };
 
+  const field =
+    "w-full rounded-xl border border-line bg-ink px-4 py-3.5 text-chrome placeholder-mist/40 focus:border-violetx focus:outline-none transition-colors";
+
   return (
-    <section className="min-h-screen py-20 px-6 md:px-12 bg-gradient-to-br from-indigo-900/5 via-purple-900/5 to-pink-900/5 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center space-y-4"
-        >
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-brand to-accent bg-clip-text text-transparent">
-            Let's Collaborate
+    <div className="relative px-5 sm:px-8 pt-36 pb-28">
+      <Toaster position="bottom-right" toastOptions={{ className: "!bg-transparent !shadow-none !p-0" }} />
+      <div className="pointer-events-none absolute -top-20 right-1/4 h-80 w-80 rounded-full bg-violetx/15 blur-[120px]" />
+      <div className="mx-auto max-w-5xl">
+        <Reveal>
+          <Eyebrow index="00" label="Contact" />
+          <h1 className="font-display text-4xl font-extrabold leading-tight text-chrome sm:text-6xl">
+            Let's talk.
           </h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-300 text-xl max-w-2xl mx-auto leading-relaxed">
-            Ready to bring your ideas to life? Whether you have a project in mind or just want to connect, 
-            I'm here to listen and create something extraordinary together.
+          <p className="mt-5 max-w-xl text-lg text-mist">
+            Whether you're hiring, have a project in mind, or just want to connect — drop me a line.
+            I read everything that comes through.
           </p>
-        </motion.div>
+        </Reveal>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-          {/* Contact Form */}
-          <motion.form
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            onSubmit={handleSubmit}
-            className="space-y-6 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/50"
-          >
-            {/* Name Field */}
-            <div className="space-y-1">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Your Name</label>
-              <input
-                type="text"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-700/30 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-brand/50 transition-all placeholder:text-gray-400/80"
-                placeholder="First and Last name"
-              />
-              <AnimatePresence>
-                {form.name.length > 0 && form.name.length < 3 && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    className="text-sm text-red-500/90"
-                  >
-                    Name must be at least 3 characters
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </div>
+        <div className="mt-14 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
+          {/* Form */}
+          <Reveal>
+            <form onSubmit={submit} className="rounded-3xl border border-line bg-panel p-7 sm:p-9">
+              <div className="space-y-5">
+                <div>
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-wider text-mist">
+                    Name
+                  </label>
+                  <input
+                    className={field}
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder="First and last name"
+                  />
+                  <AnimatePresence>
+                    {form.name.length > 0 && form.name.length < 3 && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="mt-1.5 text-xs text-red-400"
+                      >
+                        At least 3 characters.
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-            {/* Email Field */}
-            <div className="space-y-1">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
-              <input
-                type="email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-700/30 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-brand/50 transition-all placeholder:text-gray-400/80"
-                placeholder="hello@example.com"
-              />
-              <AnimatePresence>
-                {form.email.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    className="text-sm text-red-500/90"
-                  >
-                    Please enter a valid email
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </div>
+                <div>
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-wider text-mist">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    className={field}
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    placeholder="you@example.com"
+                  />
+                  <AnimatePresence>
+                    {form.email.length > 0 && !EMAIL_RE.test(form.email) && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="mt-1.5 text-xs text-red-400"
+                      >
+                        Enter a valid email.
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-            {/* Message Field */}
-            <div className="space-y-1">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Your Message</label>
-              <textarea
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                rows={5}
-                className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-700/30 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-brand/50 transition-all placeholder:text-gray-400/80"
-                placeholder="Hey Mohammed, let's work on something amazing..."
-              />
-              <AnimatePresence>
-                {form.message.length > 0 && form.message.length < 10 && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    className="text-sm text-red-500/90"
-                  >
-                    Message needs at least 10 characters
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </div>
+                <div>
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-wider text-mist">
+                    Message
+                  </label>
+                  <textarea
+                    rows={5}
+                    className={`${field} resize-none`}
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    placeholder="Hey Mohammed, I'd love to talk about…"
+                  />
+                </div>
 
-            {/* Submit Button */}
-            <motion.button
-              type="submit"
-              disabled={!form.isValid || form.isSending}
-              whileTap={{ scale: 0.95 }}
-              className="w-full py-4 px-6 bg-gradient-to-r from-brand/90 to-accent/90 text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
-            >
-              {form.isSending ? (
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex items-center justify-center"
+                <button
+                  type="submit"
+                  disabled={!valid || sending}
+                  className="flex w-full items-center justify-center gap-2.5 rounded-xl bg-violetx py-4 font-medium text-white transition-all hover:shadow-glow disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  <span className="flex h-3 w-3 mr-3">
-                    <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-white/80 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-white" />
-                  </span>
-                  Sending...
-                </motion.span>
-              ) : (
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex items-center justify-center"
+                  {sending ? (
+                    <>
+                      <span className="h-3 w-3 animate-ping rounded-full bg-white" />
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      Send message <FiSend />
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </Reveal>
+
+          {/* Channels */}
+          <Reveal delay={0.1}>
+            <div className="grid h-full grid-cols-2 gap-4">
+              {channels.map((c) => (
+                <a
+                  key={c.title}
+                  href={c.href}
+                  target={c.target}
+                  rel="noopener noreferrer"
+                  className="group relative flex flex-col justify-between rounded-2xl border border-line bg-panel p-5 transition-colors hover:border-violetx/60"
                 >
-                  Send Message <FiSend className="w-5 h-5 ml-3 animate-bounce-x" />
-                </motion.span>
-              )}
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: form.isValid ? '100%' : 0 }}
-                className="absolute bottom-0 left-0 h-1 bg-white/30 transition-all duration-1000"
-              />
-            </motion.button>
-          </motion.form>
+                  <div className="flex items-start justify-between">
+                    <c.Icon className="h-6 w-6 text-violetx" />
+                    {c.copy && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigator.clipboard.writeText(c.copy!);
+                          toast.success("Copied", { position: "bottom-right" });
+                        }}
+                        aria-label="Copy email"
+                        className="text-mist opacity-0 transition-opacity hover:text-violetx group-hover:opacity-100"
+                      >
+                        <FiCopy />
+                      </button>
+                    )}
+                  </div>
+                  <div className="mt-8">
+                    <h3 className="font-display font-semibold text-chrome">{c.title}</h3>
+                    <p className="mt-0.5 truncate text-xs text-mist">{c.sub}</p>
+                  </div>
+                </a>
+              ))}
 
-          {/* Social Links + Map */}
-          <div className="grid grid-cols-2 gap-5 relative">
-            <div className="absolute -top-20 -right-20 w-96 h-96 bg-gradient-to-r from-brand/20 to-accent/20 rounded-full blur-3xl opacity-40 animate-pulse" />
-            {socialLinks.map((link, i) => (
-              <motion.a
-                key={i}
-                target={link.target || undefined}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 + 0.4 }}
-                href={link.href}
-                onClick={() => {
-                  if (link.action) {
-                    link.action(); 
-                    // show toast
-                  }
-                                }}
-                className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-5 rounded-2xl hover:bg-white dark:hover:bg-gray-700/80 transition-all border border-white/30 dark:border-gray-600/50 hover:border-brand/40 shadow-lg hover:shadow-brand/10 relative overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <link.Icon className="w-8 h-8 text-brand mb-3 group-hover:text-accent transition-colors" />
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">{link.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{link.subtitle}</p>
-              </motion.a>
-            ))}
-<div className="col-span-2 bg-white/90 dark:bg-gray-800/80 backdrop-blur-md p-6 rounded-2xl border border-white/30 dark:border-gray-600/50 shadow-xl relative overflow-hidden">
-  <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-accent/10 opacity-20 pointer-events-none" />
-  
-  <div className="flex items-center gap-4 mb-4">
-    <MapPinIcon className="w-8 h-8 text-brand" />
-    <div>
-      <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Based in</h3>
-      <p className="text-gray-600 dark:text-gray-400 text-sm">Riverside, CA 🇺🇸</p>
-    </div>
-  </div>
-
-  <div className="rounded-xl overflow-hidden border border-gray-300 dark:border-gray-600 shadow-md">
-    <iframe
-      title="Riverside, CA Map"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=-117.3858%2C33.9756%2C-117.3658%2C33.9856&layer=mapnik&marker=33.9806%2C-117.3758"
-      className="w-full h-60 border-0"
-      loading="lazy"
-    />
-  </div>
-</div>
-
-          </div>
+              <div className="col-span-2 rounded-2xl border border-line bg-panel p-5">
+                <p className="font-mono text-xs uppercase tracking-wider text-mist">Based in</p>
+                <p className="mt-1 font-display text-lg font-semibold text-chrome">Riverside, California 🇺🇸</p>
+                <p className="mt-1 text-sm text-mist">Pacific Time · open to remote &amp; relocation</p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
-      <Toaster position="bottom-right" toastOptions={{ className: '!bg-transparent !p-0 !shadow-none' }} />
-    </section>
+    </div>
   );
-};
-
-export default Contact;
+}

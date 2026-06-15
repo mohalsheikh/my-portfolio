@@ -7,13 +7,17 @@ export function useHomeContent() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      const ref = doc(db, "home", "homeContent");
-      const snapshot = await getDoc(ref);
-      if (snapshot.exists()) setData(snapshot.data());
-      setLoading(false);
-    }
-    fetchData();
+    (async () => {
+      try {
+        const ref = doc(db, "home", "homeContent");
+        const snap = await getDoc(ref);
+        if (snap.exists()) setData(snap.data());
+      } catch {
+        /* fall back to defaults */
+      } finally {
+        setLoading(false);
+      }
+    })();
   }, []);
 
   return { data, loading };
