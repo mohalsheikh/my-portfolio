@@ -12,6 +12,9 @@ import { useEffect, useState } from "react";
 import { useHomeContent } from "../hooks/useHomeContent";
 import { projects } from "../data/projects";
 import { Eyebrow, Reveal } from "../components/Section";
+import Seo from "../seo/Seo";
+import { PAGE_SEO } from "../seo/seo.config";
+import { personSchema, websiteSchema } from "../seo/schema";
 
 const ROLES = ["Software Engineer", "AI / ML Builder", "Product Engineer", "Full-Stack Developer"];
 
@@ -58,6 +61,7 @@ export default function Home() {
 
   return (
     <div className="relative">
+      <Seo seo={PAGE_SEO.home} jsonLd={[personSchema(), websiteSchema()]} />
       {/* ── HERO ── */}
       <section className="relative grid-bg overflow-hidden px-5 sm:px-8 pt-36 pb-24 md:pt-44 md:pb-32">
         {/* ambient glows */}

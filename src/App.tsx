@@ -65,9 +65,10 @@ function AnimatedRoutes() {
   );
 }
 
-export default function App() {
+// Shared shell used by both the browser app and the prerenderer.
+export function AppShell() {
   return (
-    <BrowserRouter>
+    <>
       <CursorGlow />
       <ScrollToTop />
       <div className="relative flex min-h-screen flex-col">
@@ -77,6 +78,14 @@ export default function App() {
         </main>
         <Footer />
       </div>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppShell />
     </BrowserRouter>
   );
 }

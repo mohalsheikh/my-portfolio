@@ -2,12 +2,22 @@ import { Link } from "react-router-dom";
 import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 import { projects } from "../data/projects";
 import { Eyebrow, Reveal } from "../components/Section";
+import Seo from "../seo/Seo";
+import { PAGE_SEO } from "../seo/seo.config";
+import { breadcrumbSchema } from "../seo/schema";
 
 export default function Projects() {
   return (
     <div className="relative px-5 sm:px-8 pt-36 pb-28">
       <div className="pointer-events-none absolute -top-20 left-1/4 h-80 w-80 rounded-full bg-violetx/15 blur-[120px]" />
       <div className="mx-auto max-w-5xl">
+        <Seo
+          seo={PAGE_SEO.projects}
+          jsonLd={breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Work", path: "/projects" },
+          ])}
+        />
         <Reveal>
           <Eyebrow index="00" label="Work" />
           <h1 className="font-display text-4xl font-extrabold leading-tight text-chrome sm:text-6xl">

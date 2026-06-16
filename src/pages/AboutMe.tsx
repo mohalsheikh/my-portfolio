@@ -1,5 +1,7 @@
-import React from "react";
 import { Eyebrow, Reveal } from "../components/Section";
+import Seo from "../seo/Seo";
+import { PAGE_SEO } from "../seo/seo.config";
+import { personSchema } from "../seo/schema";
 import { FiMapPin } from "react-icons/fi";
 
 const journey = [
@@ -30,6 +32,7 @@ export default function AboutMe() {
     <div className="relative px-5 sm:px-8 pt-36 pb-28">
       <div className="pointer-events-none absolute -top-20 right-1/4 h-80 w-80 rounded-full bg-violetx/15 blur-[120px]" />
       <div className="mx-auto max-w-5xl">
+        <Seo seo={PAGE_SEO.about} jsonLd={personSchema()} />
         {/* Intro */}
         <Reveal>
           <Eyebrow index="00" label="About" />

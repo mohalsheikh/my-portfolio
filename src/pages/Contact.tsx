@@ -4,6 +4,9 @@ import toast, { Toaster } from "react-hot-toast";
 import { FiGithub, FiLinkedin, FiMail, FiFileText, FiSend, FiCheckCircle, FiCopy } from "react-icons/fi";
 import { saveContactMessage } from "../services/firebaseService";
 import { Eyebrow, Reveal } from "../components/Section";
+import Seo from "../seo/Seo";
+import { PAGE_SEO } from "../seo/seo.config";
+import { personSchema } from "../seo/schema";
 
 type FormState = { name: string; email: string; message: string };
 
@@ -55,6 +58,7 @@ export default function Contact() {
   return (
     <div className="relative px-5 sm:px-8 pt-36 pb-28">
       <Toaster position="bottom-right" toastOptions={{ className: "!bg-transparent !shadow-none !p-0" }} />
+      <Seo seo={PAGE_SEO.contact} jsonLd={personSchema()} />
       <div className="pointer-events-none absolute -top-20 right-1/4 h-80 w-80 rounded-full bg-violetx/15 blur-[120px]" />
       <div className="mx-auto max-w-5xl">
         <Reveal>

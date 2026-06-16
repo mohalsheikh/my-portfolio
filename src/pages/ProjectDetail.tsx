@@ -2,6 +2,9 @@ import { useParams, Link } from "react-router-dom";
 import { FiArrowLeft, FiGithub, FiArrowUpRight, FiCheck } from "react-icons/fi";
 import { getProject, projects } from "../data/projects";
 import { Eyebrow, Reveal } from "../components/Section";
+import Seo from "../seo/Seo";
+import type { PageSeo } from "../seo/seo.config";
+import { projectSchema, breadcrumbSchema, personSchema } from "../seo/schema";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -23,8 +26,27 @@ export default function ProjectDetail() {
 
   const others = projects.filter((p) => p.slug !== project.slug).slice(0, 2);
 
+  const detailSeo: PageSeo = {
+    title: `${project.title} — ${project.tagline} | Mohammed Alsheikh`,
+    description: project.description.slice(0, 158),
+    path: `/projects/${project.slug}`,
+    type: "article",
+  };
+
   return (
     <div className="relative px-5 sm:px-8 pt-32 pb-28">
+      <Seo
+        seo={detailSeo}
+        jsonLd={[
+          projectSchema(project),
+          personSchema(),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Work", path: "/projects" },
+            { name: project.title, path: `/projects/${project.slug}` },
+          ]),
+        ]}
+      />
       <div className="pointer-events-none absolute -top-20 left-1/3 h-80 w-80 rounded-full bg-violetx/15 blur-[120px]" />
       <div className="mx-auto max-w-4xl">
         <Reveal>
