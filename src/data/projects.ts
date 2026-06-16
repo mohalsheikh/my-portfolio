@@ -57,19 +57,21 @@ export const projects: Project[] = [
   {
     slug: "soundtrack",
     title: "OFFBEAT",
-    tagline: "BeReal, but for the music you live to",
+    tagline: "The daily music ritual that ignores the walled gardens",
     description:
-      "A social music app where users share one song a day, powered by Spotify. A full cross-platform build — social feed, friend system, messaging, push notifications and home-screen widgets.",
-    stack: ["Flutter", "Firebase", "Spotify API", "FCM"],
+      "A social music app built on one idea the incumbents structurally can't ship: share the song you're living to today with anyone — regardless of whether they're on Spotify or Apple Music. Spotify and Apple keep sharing inside their own walls by design; OFFBEAT is the neutral layer between them. Every shared track resolves across services with graceful fallback, so a Spotify listener and an Apple Music listener finally share the same song. A complete, shipped product — cross-platform feed, friend graph, real-time messaging, push, and home-screen widgets — built and tested end-to-end with co-founder Eliza Pepper.",
+    stack: ["Flutter", "Firebase", "Spotify API", "Apple Music API", "FCM", "React"],
     year: "2024",
-    role: "Full-Stack Engineer",
+    role: "Co-Founder & Full-Stack Engineer (with Eliza Pepper)",
     category: "Mobile · Social",
     accent: "🎧",
+    featured: true,
     highlights: [
-      "Daily one-song social feed",
-      "Realtime messaging with read receipts",
-      "Push notifications via Firebase Cloud Messaging",
+      "Cross-platform song resolution — share Spotify ↔ Apple Music, with fallback for catalog gaps",
+      "Daily one-song social feed with friend graph and mentions",
+      "Real-time messaging: read receipts, typing indicators, FCM push",
       "iOS home-screen widgets + React admin dashboard",
+      "Shipped MVP — full feature set, validated with real testers",
     ],
   },
   {
