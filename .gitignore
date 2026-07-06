@@ -28,3 +28,15 @@ serviceAccount*.json
 *.sw?
 src/assets/smart glasses.mp4
 .vercel
+
+# Build output
+dist/
+
+# Local code counting/tool artifacts
+.VSCodeCounter/
+
+# Env and secrets
+.env
+.env.*
+serviceAccount*.json
+*-adminsdk-*.json
