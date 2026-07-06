@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
@@ -19,8 +19,6 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => setOpen(false), [pathname]);
 
   return (
     <nav
@@ -94,6 +92,7 @@ export default function Navbar() {
                 <li key={item.path}>
                   <Link
                     to={item.path}
+                    onClick={() => setOpen(false)}
                     className={`flex items-center gap-3 py-3 text-lg ${
                       pathname === item.path ? "text-violetx" : "text-chrome"
                     }`}
@@ -108,6 +107,7 @@ export default function Navbar() {
                   href="/Mohammed_Alsheikh_Resume_04.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
                   className="mt-2 block rounded-lg bg-violetx px-4 py-3 text-center font-medium text-white"
                 >
                   Download Résumé

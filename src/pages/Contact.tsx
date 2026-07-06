@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import { FiGithub, FiLinkedin, FiMail, FiFileText, FiSend, FiCheckCircle, FiCopy } from "react-icons/fi";
@@ -21,12 +21,8 @@ const channels = [
 
 export default function Contact() {
   const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" });
-  const [valid, setValid] = useState(false);
   const [sending, setSending] = useState(false);
-
-  useEffect(() => {
-    setValid(form.name.trim().length > 2 && EMAIL_RE.test(form.email) && form.message.trim().length > 10);
-  }, [form]);
+  const valid = form.name.trim().length > 2 && EMAIL_RE.test(form.email) && form.message.trim().length > 10;
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();

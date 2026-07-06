@@ -9,7 +9,6 @@ import AboutMe from "./pages/AboutMe";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import Contact from "./pages/Contact";
-import AdminMessages from "./pages/AdminMessages";
 import { Privacy, Terms } from "./pages/Legal";
 
 function ScrollToTop() {
@@ -41,7 +40,6 @@ function AnimatedRoutes() {
         <Route path="/projects" element={<Page><Projects /></Page>} />
         <Route path="/projects/:slug" element={<Page><ProjectDetail /></Page>} />
         <Route path="/contact" element={<Page><Contact /></Page>} />
-        <Route path="/admin/messages" element={<Page><AdminMessages /></Page>} />
         <Route path="/privacy" element={<Page><Privacy /></Page>} />
         <Route path="/terms" element={<Page><Terms /></Page>} />
         <Route
