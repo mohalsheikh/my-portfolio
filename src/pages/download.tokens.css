@@ -1,14 +1,24 @@
 .download-page {
-  /* Existing ink/panel colors, with neutral paper scoped to this page. */
-  --download-ink: #07070a;
-  --download-hover: #23232f;
+  /* The original paper-and-ink palette, scoped to OFFBEAT. */
   --download-paper: #fafafa;
-  --download-white: #fff;
+  --download-panel: #ffffff;
+  --download-ink: #141416;
   --download-muted: #63636b;
-  --download-quiet: #96969e;
+  --download-accent: #665085;
   --download-border: #e3e3e7;
   --download-border-strong: #c8c8cf;
-  --download-unavailable: #f5f5f7;
+  --download-unavailable: #f3f3f5;
   --download-disabled: #e6e6ea;
+  --download-hover: #303036;
+  --download-button-ink: #ffffff;
+  --download-font-brand: "Orbitron", sans-serif;
   --download-font-note: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+  --download-space-xs: 8px;
+  --download-space-sm: 16px;
+  --download-space-md: 24px;
+  --download-space-lg: 32px;
+  --download-space-xl: 48px;
+  --download-space-2xl: 64px;
+  --download-space-section: 96px;
+  --download-radius: 8px;
 }

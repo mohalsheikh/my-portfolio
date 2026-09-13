@@ -12,7 +12,7 @@ const socials = [
   { name: "Email", url: "mailto:moalsheikh2004@gmail.com", icon: <FiMail /> },
 ];
 
-export default function Footer() {
+function PortfolioFooter() {
   const [email, setEmail] = useState("");
   const [showTop, setShowTop] = useState(false);
   const year = new Date().getFullYear();
@@ -121,4 +121,20 @@ export default function Footer() {
       </motion.button>
     </footer>
   );
+}
+
+export default function Footer({ variant = "portfolio" }: { variant?: "portfolio" | "offbeat" }) {
+  if (variant === "offbeat") {
+    return (
+      <footer className="download-footer">
+        <div className="download-footer-inner download-container">
+          <a className="download-brand" href="/download" aria-label="OFFBEAT download page">OFFBEAT</a>
+          <p>One song. Every day.</p>
+          <a className="download-footer-top" href="#download">Back to top <FiArrowUp aria-hidden="true" /></a>
+        </div>
+      </footer>
+    );
+  }
+
+  return <PortfolioFooter />;
 }
