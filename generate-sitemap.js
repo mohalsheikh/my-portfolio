@@ -16,6 +16,7 @@ const run = async () => {
     { path: "/aboutme", priority: "0.8", freq: "monthly" },
     { path: "/projects", priority: "0.9", freq: "monthly" },
     { path: "/contact", priority: "0.7", freq: "yearly" },
+    { path: "/download", priority: "0.8", freq: "monthly" },
   ];
   const projectRoutes = data.projects.map((p) => ({
     path: `/projects/${p.slug}`,

@@ -9,11 +9,15 @@ import AboutMe from "./pages/AboutMe";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import Contact from "./pages/Contact";
+import Download from "./pages/Download";
 import { Privacy, Terms } from "./pages/Legal";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => window.scrollTo(0, 0), [pathname]);
+  useEffect(() => {
+    // Some browsers return a Promise; effects must not return that as cleanup.
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return null;
 }
 
@@ -65,16 +69,19 @@ function AnimatedRoutes() {
 
 // Shared shell used by both the browser app and the prerenderer.
 export function AppShell() {
+  const { pathname } = useLocation();
+  const isDownloadPage = pathname.replace(/\/+$/, "") === "/download";
   return (
     <>
-      <CursorGlow />
+      {!isDownloadPage && <CursorGlow />}
       <ScrollToTop />
       <div className="relative flex min-h-screen flex-col">
-        <Navbar />
+        {!isDownloadPage && <Navbar />}
         <main className="relative z-10 flex-grow">
-          <AnimatedRoutes />
+          {/* The static download page must not enter the portfolio's exit queue. */}
+          {isDownloadPage ? <Download /> : <AnimatedRoutes />}
         </main>
-        <Footer />
+        {!isDownloadPage && <Footer />}
       </div>
     </>
   );

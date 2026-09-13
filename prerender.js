@@ -18,7 +18,7 @@ function readAssets() {
 
 async function getRoutesAndRender() {
   const mod = await import(path.join(distDir, "server/entry-server.js"));
-  const routes = ["/", "/aboutme", "/projects", "/contact", "/privacy", "/terms"];
+  const routes = ["/", "/aboutme", "/projects", "/contact", "/privacy", "/terms", "/download"];
   const data = await import(path.join(distDir, "server/projects-data.js"));
   for (const p of data.projects) routes.push(`/projects/${p.slug}`);
   return { render: mod.render, routes };
@@ -38,6 +38,11 @@ const run = async () => {
     const file = outFileFor(route);
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, page, "utf-8");
+    // Vite preview and Vercel cleanUrls resolve /download via download.html.
+    // Keep the directory index too, so /download/ also serves the same page.
+    if (route === "/download") {
+      fs.writeFileSync(path.join(distDir, "download.html"), page, "utf-8");
+    }
     console.log("✓ prerendered", route, "→", path.relative(__dirname, file));
   }
   console.log(`\nDone. ${routes.length} routes prerendered.`);

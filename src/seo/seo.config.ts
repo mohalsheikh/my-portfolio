@@ -70,6 +70,13 @@ export const PAGE_SEO: Record<string, PageSeo> = {
       "Get in touch with Mohammed Alsheikh for roles, collaborations, and projects. Software engineer based in Riverside, California.",
     path: "/contact",
   },
+  download: {
+    title: "Get Offbeat — Download for iPhone",
+    description:
+      "Share a song. See what your friends are listening to. Find your people. Download OFFBEAT for iPhone. Android coming soon.",
+    path: "/download",
+    image: "https://moalsheikh.com/offbeat/app-icon.png",
+  },
 };
 
 export const absoluteUrl = (path: string) =>

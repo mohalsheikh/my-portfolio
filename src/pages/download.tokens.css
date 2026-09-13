@@ -1,0 +1,14 @@
+.download-page {
+  /* Existing ink/panel colors, with neutral paper scoped to this page. */
+  --download-ink: #07070a;
+  --download-hover: #23232f;
+  --download-paper: #fafafa;
+  --download-white: #fff;
+  --download-muted: #63636b;
+  --download-quiet: #96969e;
+  --download-border: #e3e3e7;
+  --download-border-strong: #c8c8cf;
+  --download-unavailable: #f5f5f7;
+  --download-disabled: #e6e6ea;
+  --download-font-note: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+}

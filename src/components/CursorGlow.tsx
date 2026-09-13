@@ -1,9 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
+const pointerQuery = "(pointer: fine)";
+
+function subscribeToPointer(onChange: () => void) {
+  const media = window.matchMedia(pointerQuery);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+
+const getPointerSnapshot = () => window.matchMedia(pointerQuery).matches;
+const getServerSnapshot = () => false;
+
 export default function CursorGlow() {
-  const [enabled] = useState(() =>
-    typeof window === "undefined" ? false : window.matchMedia("(pointer: fine)").matches
+  // Hydration must start with the same markup as the prerendered page.
+  // React reads the actual pointer capability after hydration completes.
+  const enabled = useSyncExternalStore(
+    subscribeToPointer,
+    getPointerSnapshot,
+    getServerSnapshot
   );
   const x = useMotionValue(-400);
   const y = useMotionValue(-400);
